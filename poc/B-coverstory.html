@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Behind the Drop — B / Cover Story — GHC 2026 POC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400;1,9..40,500&family=Anton&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:#0a0a0b; --base2:#0c0d0f;
+    --orange:#ff4e33; --teal:#4fb6c9; --gold:#d4a24e;
+    --ink:#eceae6; --muted:#8d9098; --line:#24282e;
+    --mag:#ff2d9a; --mag-soft:#ff79cf; --red:#ff5a4d; --steel:#5fa8c9;
+    --acc:var(--orange); --acc-soft:#ff8a72; --acc-rgb:255,78,51;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden;background:#0a0a0b;color:var(--ink);
+    font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+
+  /* ---------- FIXED STAGE (GOTCHAS §1: explicit anchor + translate, never grid place-items) ---------- */
+  .wrap{position:fixed;inset:0;overflow:hidden;background:#0a0a0b}
+  .stage{position:absolute;top:50%;left:50%;width:1920px;height:1080px;overflow:hidden;
+    transform-origin:center center;transform:translate(-50%,-50%) scale(1);
+    background:linear-gradient(120deg,#0c0d0f 0%,#0a0a0b 52%,#08080a 100%);isolation:isolate}
+  .stage[data-acc="mag"]{--acc:var(--mag);--acc-soft:var(--mag-soft);--acc-rgb:255,45,154}
+
+  /* ---------- BEATS ---------- */
+  .beat{position:absolute;inset:0;opacity:0;visibility:hidden;z-index:10}
+  .cover{position:absolute;inset:0;overflow:hidden;transform-origin:50% 50%}
+  .cover img{position:absolute;display:block;max-width:none;transform-origin:50% 50%}
+
+  /* scrims — contrast over imagery, never by shrinking the art */
+  .scrim{position:absolute;inset:0;pointer-events:none}
+  .scrim.l{background:linear-gradient(90deg,rgba(10,10,11,.96) 0%,rgba(10,10,11,.82) 24%,rgba(10,10,11,.42) 44%,rgba(10,10,11,.06) 62%,rgba(10,10,11,0) 72%)}
+  .scrim.tb{background:linear-gradient(180deg,rgba(10,10,11,.62) 0%,rgba(10,10,11,0) 22%,rgba(10,10,11,0) 66%,rgba(10,10,11,.78) 100%)}
+  .scrim.col{background:linear-gradient(90deg,#0a0a0b 0%,#0a0a0b 40%,rgba(10,10,11,.985) 48%,rgba(10,10,11,.86) 55%,rgba(10,10,11,.42) 63%,rgba(10,10,11,.08) 72%,rgba(10,10,11,0) 80%)}
+  .scrim.wash{background:rgba(10,10,11,.58)}
+  .scrim.warm{background:radial-gradient(70% 60% at 62% 40%,rgba(255,78,51,.14) 0%,rgba(255,78,51,0) 70%);mix-blend-mode:screen}
+
+  /* the hairline that draws across and becomes the layout's grid */
+  .rule{position:absolute;left:64px;right:64px;height:1px;background:rgba(236,234,230,.28);transform-origin:left center}
+  .rule.v{width:1px;height:auto;right:auto;transform-origin:center top;background:rgba(236,234,230,.18)}
+
+  /* folio row */
+  .folio{position:absolute;left:84px;right:84px;display:flex;align-items:center;gap:16px;
+    font-family:'Oswald',sans-serif;font-weight:500;letter-spacing:.36em;font-size:15px;text-transform:uppercase;color:var(--ink)}
+  .folio .no{font-family:'Share Tech Mono',monospace;font-size:13px;letter-spacing:.14em;color:var(--acc-soft);
+    border:1px solid rgba(var(--acc-rgb),.5);padding:3px 10px;border-radius:2px;transition:color .6s,border-color .6s}
+  .folio .tx{color:var(--acc);transition:color .6s}
+  .folio .ln{flex:1;height:1px;background:linear-gradient(90deg,rgba(var(--acc-rgb),.5),rgba(236,234,230,.06) 40%,transparent)}
+  .folio .mono{font-family:'Share Tech Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(236,234,230,.72)}
+  .folio .mono b{color:var(--ink);font-weight:400}
+  .led{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--mag);box-shadow:0 0 10px var(--mag),0 0 18px rgba(255,45,154,.5);margin-right:10px;vertical-align:1px;animation:ledPulse 1.6s ease-in-out infinite}
+  @keyframes ledPulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+  /* masked wordmark rise (the Apex slide's .wm-mask) */
+  .wm-line{overflow:hidden;padding:.06em .1em .05em 0}
+  .wm{display:block;text-transform:uppercase;color:var(--ink);text-shadow:0 10px 60px rgba(0,0,0,.6);letter-spacing:0;will-change:transform}
+  .anton{font-family:'Anton',sans-serif;font-weight:400;line-height:1}
+  .osw{font-family:'Oswald',sans-serif;font-weight:700;line-height:1}
+  .win-word{display:inline;letter-spacing:0}
+
+  /* eyebrow */
+  .eyebrow{display:flex;align-items:center;gap:16px;font-family:'Oswald',sans-serif;font-weight:500;letter-spacing:.4em;font-size:16px;text-transform:uppercase;color:var(--acc);transition:color .6s}
+  .eyebrow .ln{height:1px;width:54px;background:linear-gradient(90deg,var(--acc),transparent)}
+
+  /* pull-quote rail (orange, always) */
+  .pull{display:flex;align-items:flex-start;gap:16px}
+  .pull .bar{width:3px;align-self:stretch;background:var(--orange);box-shadow:0 0 16px rgba(255,78,51,.45);flex:0 0 auto}
+  .pull q{quotes:none;font-family:'DM Sans',sans-serif;font-style:italic;font-weight:500;font-size:26px;line-height:1.28;color:var(--orange);text-shadow:0 4px 22px rgba(0,0,0,.6)}
+  .pull .src{display:block;margin-top:10px;font-style:normal;font-family:'Oswald',sans-serif;font-weight:500;letter-spacing:.24em;font-size:13px;text-transform:uppercase;color:var(--muted)}
+
+  /* GHC stamp */
+  .ghc{position:absolute;padding:16px 22px 14px;border:1px solid rgba(236,234,230,.32);text-align:left;background:rgba(10,10,11,.38)}
+  .ghc::before,.ghc::after{content:"";position:absolute;width:14px;height:14px;border-color:var(--orange);border-style:solid}
+  .ghc::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
+  .ghc::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+  .ghc .l{display:block;font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink);line-height:1.35}
+  .ghc .yr{display:block;margin-top:6px;font-family:'Anton',sans-serif;font-size:46px;line-height:1;color:var(--orange);letter-spacing:.02em}
+  .ghc .mono{display:block;margin-top:8px;font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:.18em;color:var(--muted)}
+
+  /* spine text */
+  .spine{position:absolute;right:52px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;
+    font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:rgba(236,234,230,.62);white-space:nowrap}
+
+  /* ============ BEAT 1 — COVER ============ */
+  .b1 .mast{position:absolute;left:82px;top:186px}
+  .b1 .sub-mast{font-size:96px;letter-spacing:.06em}
+  .b1 .mast-word{font-size:486px;line-height:.9}
+  .b1 .line2{margin-top:-.05em}
+  .b1 .deck{position:absolute;left:92px;top:704px;display:flex;align-items:center;gap:18px}
+  .b1 .deck .bar{width:54px;height:3px;background:var(--orange);box-shadow:0 0 14px rgba(255,78,51,.6)}
+  .b1 .deck .tx{font-family:'Oswald',sans-serif;font-weight:500;font-size:42px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);line-height:1}
+  .b1 .byline{position:absolute;left:92px;top:792px}
+  .b1 .byline b{display:block;font-family:'Oswald',sans-serif;font-weight:600;font-size:34px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);line-height:1.1}
+  .b1 .byline span{display:block;margin-top:8px;font-family:'DM Sans',sans-serif;font-size:23px;color:#c9cbd0;letter-spacing:.01em}
+  .b1 .byline span i{font-style:normal;color:var(--muted)}
+  .b1 .ghc{right:96px;bottom:96px}
+  .b1 .teaser{position:absolute;left:92px;top:906px;display:flex;gap:26px;align-items:center;
+    font-family:'Share Tech Mono',monospace;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .b1 .teaser b{color:var(--ink);font-weight:400}
+  .b1 .teaser .sep{color:var(--orange)}
+
+  /* ============ BEAT 2 — FEATURE ============ */
+  .b2 .ed{position:absolute;left:84px;top:186px;width:960px}
+  .b2 .hl{margin-top:16px}
+  .b2 .hl .wm{font-size:150px;line-height:.94}
+  .b2 .body{margin-top:26px;max-width:800px;font-family:'DM Sans',sans-serif;font-size:23px;line-height:1.52;color:#c9cbd0}
+  .b2 .body b{color:var(--ink);font-weight:600}
+  .b2 .body .m{color:var(--mag-soft);font-weight:600}
+  .b2 .stats{display:flex;gap:18px;margin-top:34px}
+  .card{position:relative;width:286px;height:158px;padding:22px 22px 18px 30px;overflow:hidden;
+    background:linear-gradient(180deg,rgba(18,19,23,.86),rgba(12,13,15,.86));border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 18px 40px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.02)}
+  .card .stripe{position:absolute;left:0;top:-10px;bottom:-10px;width:6px;background:var(--red);box-shadow:0 0 16px rgba(255,90,77,.55);transform:skewX(-12deg)}
+  .card .num{display:flex;align-items:baseline;font-family:'Oswald',sans-serif;font-weight:700;font-size:66px;line-height:.92;letter-spacing:-.01em;color:var(--ink)}
+  .card .num .u{font-size:30px;font-weight:500;color:var(--mag-soft);margin-left:5px}
+  .card .lab{margin-top:12px;font-family:'Oswald',sans-serif;font-weight:500;font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)}
+  .card .sub{margin-top:3px;font-family:'Share Tech Mono',monospace;font-size:13px;letter-spacing:.08em;color:var(--muted)}
+  .b2 .frame{position:absolute;left:1176px;top:168px;width:664px;height:800px;border:1px solid rgba(236,234,230,.22);pointer-events:none}
+  .b2 .frame i{position:absolute;width:34px;height:34px;border-color:var(--mag);border-style:solid}
+  .b2 .frame i.tl{top:-2px;left:-2px;border-width:3px 0 0 3px}
+  .b2 .frame i.tr{top:-2px;right:-2px;border-width:3px 3px 0 0}
+  .b2 .frame i.bl{bottom:-2px;left:-2px;border-width:0 0 3px 3px}
+  .b2 .frame i.br{bottom:-2px;right:-2px;border-width:0 3px 3px 0}
+  .b2 .frame .cap{position:absolute;right:18px;top:14px;font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mag-soft);
+    padding:4px 9px;border:1px solid rgba(255,45,154,.4);background:rgba(8,8,10,.5);border-radius:2px}
+  .b2 .pull{position:absolute;left:1214px;top:822px;width:600px}
+  .b2 .pull q{font-size:25px}
+  .b2 .scrim.plate{background:linear-gradient(180deg,rgba(10,10,11,0) 60%,rgba(10,10,11,.82) 88%,rgba(10,10,11,.92) 100%)}
+
+  /* ============ BEAT 3 — ROSTER / CONTACT SHEET ============ */
+  .b3 .ed{position:absolute;left:84px;top:186px;width:1000px}
+  .b3 .hl{margin-top:16px}
+  .b3 .hl .wm{font-size:146px;line-height:.92}
+  .b3 .thesis{margin-top:14px;max-width:900px;font-family:'Oswald',sans-serif;font-weight:300;font-size:27px;line-height:1.42;letter-spacing:.012em;color:#c9cbd0}
+  .b3 .thesis b{color:var(--ink);font-weight:600}
+  .b3 .thesis .or{color:var(--orange);font-weight:600}
+  .b3 .big{position:absolute;right:96px;top:196px;text-align:right}
+  .b3 .big .n{font-family:'Anton',sans-serif;font-size:250px;line-height:.88;color:transparent;-webkit-text-stroke:2px rgba(236,234,230,.85);
+    background:linear-gradient(180deg,rgba(255,78,51,.22),rgba(255,78,51,0));-webkit-background-clip:text;background-clip:text;padding:0 6px}
+  .b3 .big .l{margin-top:10px;font-family:'Oswald',sans-serif;font-weight:500;font-size:16px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink)}
+  .b3 .big .s{margin-top:6px;font-family:'Share Tech Mono',monospace;font-size:14px;letter-spacing:.14em;color:rgba(236,234,230,.72)}
+
+  .strip{position:absolute;left:0;right:0;top:644px;padding:0 0 2px}
+  .sprocket{height:16px;position:relative;display:flex;align-items:center}
+  .sprocket::before{content:"";position:absolute;left:0;right:0;top:50%;height:9px;transform:translateY(-50%);
+    background:repeating-linear-gradient(90deg,transparent 0 12px,rgba(236,234,230,.17) 12px 26px,transparent 26px 38px)}
+  .sprocket .lab{position:absolute;right:30px;top:50%;transform:translateY(-50%);font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.22em;color:rgba(236,234,230,.45);background:var(--base);padding:0 8px}
+  .sprocket .lab.left{right:auto;left:30px}
+  .marquee-row{position:relative;overflow:hidden;height:164px;padding-left:76px}
+  .strip .marquee-row{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 34px,#000 calc(100% - 34px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 34px,#000 calc(100% - 34px),transparent 100%)}
+  /* spacing via per-tile margin (NOT flex gap) so the duplicated set makes the track exactly 2x one set wide */
+  .marquee-track{display:flex;width:max-content;will-change:transform}
+  .strip.live .marquee-track.left {animation:marqueeL 64s linear infinite}
+  .strip.live .marquee-track.right{animation:marqueeR 78s linear infinite}
+  @keyframes marqueeL{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+  @keyframes marqueeR{from{transform:translate3d(-50%,0,0)}to{transform:translate3d(0,0,0)}}
+
+  .tile{position:relative;flex:0 0 auto;width:128px;height:164px;margin-right:16px;border-radius:4px;overflow:hidden;
+    background:linear-gradient(180deg,#16181d 0%,#0e0f12 100%);border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 12px 28px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.03);isolation:isolate}
+  .tile.wide{width:272px}
+  .tile .face{position:absolute;inset:0;background-repeat:no-repeat;background-size:cover;transform:scale(1.2);transform-origin:50% 20%;filter:contrast(1.06) saturate(1.07) brightness(.98)}
+  .tile.wide .face{transform:none;background-size:cover;background-position:50% 40%}
+  .tile .lscrim{position:absolute;left:0;right:0;bottom:0;height:58%;z-index:2;background:linear-gradient(180deg,rgba(8,8,10,0) 0%,rgba(8,8,10,.4) 46%,rgba(8,8,10,.94) 100%)}
+  .tile .edge{position:absolute;inset:0;z-index:3;border-radius:4px;box-shadow:inset 0 0 0 1px rgba(var(--acc-rgb),.18),inset 0 0 20px -8px rgba(var(--acc-rgb),.3)}
+  .tile .nm{position:absolute;left:10px;right:8px;bottom:9px;z-index:4;font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.95)}
+  .tile .nm .ro{display:block;margin-top:4px;font-family:'Share Tech Mono',monospace;font-weight:400;font-size:10.5px;letter-spacing:.12em;color:var(--acc-soft);text-shadow:0 1px 8px rgba(0,0,0,.95)}
+  .tile .pip{position:absolute;top:8px;right:9px;z-index:4;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(236,234,230,.7)}
+  /* proof-sheet overlay: dark wash + frame label; fades when the sheet goes live */
+  .tile .proof{position:absolute;inset:0;z-index:5;background:rgba(10,10,11,.5);pointer-events:none}
+  .tile .proof .fr{position:absolute;left:8px;top:7px;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.14em;color:rgba(236,234,230,.85)}
+  /* the photographer's grease-pencil pick */
+  .tile .grease{position:absolute;inset:5px 4px;z-index:6;border:3px solid var(--orange);opacity:0;pointer-events:none;
+    border-radius:48% 52% 46% 54% / 52% 46% 54% 48%;transform:rotate(-5deg);box-shadow:0 0 14px rgba(255,78,51,.35)}
+  .tile.wide .grease{border-radius:52% 48% 50% 50% / 60% 62% 38% 40%}
+
+  /* ============ BEAT 4 — THE DROP ============ */
+  .vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;pointer-events:none}
+  .b4 .mast{position:absolute;left:82px;bottom:132px}
+  .b4 .sub-mast{font-size:84px;letter-spacing:.08em}
+  .b4 .mast-word{font-size:400px;line-height:.9}
+  .b4 .line2{margin-top:-.04em}
+  .b4 .cta{position:absolute;right:96px;bottom:300px;width:620px}
+  .b4 .cta q{font-size:38px;line-height:1.2}
+  .b4 .cta .src{font-size:15px;color:var(--ink)}
+  .b4 .cta .src i{font-style:normal;color:var(--muted)}
+  .b4 .ghc{right:96px;bottom:96px}
+  .b4 .endfolio{position:absolute;left:92px;bottom:88px;font-family:'Share Tech Mono',monospace;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .b4 .endfolio b{color:var(--ink);font-weight:400}
+  .b4 .endfolio .sep{color:var(--mag)}
+  .b4 .runchip{position:absolute;right:96px;top:168px;font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:.16em;color:rgba(236,234,230,.85);padding:5px 10px;border:1px solid rgba(255,45,154,.45);background:rgba(8,8,10,.5);border-radius:3px}
+
+  /* ---------- TEXT-AS-WINDOW TRANSITION LAYERS ---------- */
+  .plate{position:absolute;inset:0;z-index:40;background:#0a0a0b;opacity:0;visibility:hidden;pointer-events:none}
+  .win{position:absolute;inset:0;width:1920px;height:1080px;z-index:41;opacity:0;visibility:hidden;pointer-events:none}
+  .win text{font-family:'Anton',sans-serif;font-weight:400}
+
+  /* ---------- PERSISTENT CHROME ---------- */
+  .tick{position:absolute;z-index:60;border-color:rgba(236,234,230,.24);pointer-events:none;width:46px;height:46px}
+  .tk-tl{top:30px;left:30px;border-left:2px solid;border-top:2px solid}
+  .tk-bl{bottom:30px;left:30px;border-left:2px solid;border-bottom:2px solid}
+  .tk-tr{top:30px;right:30px;border-right:2px solid;border-top:2px solid}
+  .tk-br{bottom:30px;right:30px;border-right:2px solid;border-bottom:2px solid}
+  .corner-mark{position:absolute;top:42px;left:64px;z-index:60;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.3em;font-size:14px;text-transform:uppercase;display:flex;align-items:center;gap:13px}
+  .corner-mark .dot{width:8px;height:8px;background:var(--acc);box-shadow:0 0 14px var(--acc);transition:background .6s,box-shadow .6s}
+  .corner-mark .sub{color:var(--muted);font-weight:400}
+  .counter{position:absolute;top:42px;right:64px;z-index:60;text-align:right;font-family:'Oswald',sans-serif;font-weight:500;letter-spacing:.22em;font-size:15px;color:var(--muted)}
+  .counter b{color:var(--ink);font-weight:600}
+  .counter .tag{display:block;margin-top:6px;font-size:10px;letter-spacing:.32em;color:var(--acc-soft);transition:color .6s}
+  .dots{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:95;display:flex;gap:14px;align-items:center}
+  .dots button{width:9px;height:9px;border-radius:50%;border:1px solid var(--muted);background:transparent;cursor:pointer;padding:0;transition:.3s}
+  .dots button.on{background:var(--acc);border-color:var(--acc);box-shadow:0 0 10px rgba(var(--acc-rgb),.6)}
+  .hint{position:absolute;left:64px;bottom:34px;z-index:95;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(141,144,152,.7)}
+
+  .vignette{position:absolute;inset:0;z-index:80;pointer-events:none;box-shadow:inset 0 0 300px 70px rgba(0,0,0,.6),inset 0 0 70px 0 rgba(0,0,0,.4)}
+  .scanlines{position:absolute;inset:0;z-index:90;pointer-events:none;opacity:.22;mix-blend-mode:multiply;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,.10) 0px,rgba(0,0,0,.10) 1px,transparent 2px,transparent 4px)}
+  .grain{position:absolute;inset:-50%;z-index:91;pointer-events:none;width:200%;height:200%;opacity:.045;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grainShift 760ms steps(4) infinite}
+  @keyframes grainShift{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-2%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(1%,2%)}}
+
+  @media (prefers-reduced-motion:reduce){
+    .grain,.led{animation:none}
+    .strip.live .marquee-track.left,.strip.live .marquee-track.right{animation:none}
+    .strip.live .marquee-track.right{transform:translate3d(-50%,0,0)}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="stage" id="stage" data-acc="orange" aria-label="Behind the Drop — Cover Story POC">
+
+  <!-- ================= BEAT 1 — COVER ================= -->
+  <div class="beat b1" id="b1" data-word="DROP" data-tag="Cover Story" data-acc="orange">
+    <div class="cover" id="cov1"><img class="cover-img" alt="Apex Legends — Season 30 Marked, Steam screenshot"></div>
+    <div class="scrim l"></div><div class="scrim tb"></div>
+    <div class="rule" style="top:112px"></div>
+    <div class="folio rv" style="top:128px"><span class="no">No. 01</span><span class="tx">// Cover Story</span><span class="ln"></span><span class="mono"><b>Season 30</b> // Marked</span></div>
+
+    <div class="mast">
+      <div class="wm-line"><span class="wm osw sub-mast">Behind the</span></div>
+      <div class="wm-line line2"><span class="wm anton mast-word"><span class="win-word">DROP</span></span></div>
+    </div>
+
+    <div class="deck rv"><span class="bar"></span><span class="tx">How Apex Legends Ships</span></div>
+    <div class="byline rv"><b>Julie Banta</b><span>Director, Build &amp; Release <i>·</i> Respawn Entertainment</span></div>
+    <div class="teaser rv"><span><b>Inside</b></span><span class="sep">//</span><span>200M+ players</span><span class="sep">//</span><span>30 seasons</span><span class="sep">//</span><span>28 Legends</span></div>
+
+    <div class="ghc rv"><span class="l">Grace Hopper</span><span class="l">Celebration</span><span class="yr">2026</span><span class="mono">// Keynote stage · Live</span></div>
+    <div class="spine rv">Behind the Drop &nbsp;—&nbsp; GHC 2026 &nbsp;—&nbsp; Respawn Entertainment</div>
+  </div>
+
+  <!-- ================= BEAT 2 — FEATURE ================= -->
+  <div class="beat b2" id="b2" data-word="LAUNCH" data-tag="The Feature" data-acc="mag">
+    <div class="cover" id="cov2"><img class="cover-img" alt="Apex Legends — Season 29 Overclocked key art"></div>
+    <div class="scrim col"></div><div class="scrim tb"></div><div class="scrim plate"></div>
+    <div class="rule" style="top:112px"></div>
+    <div class="rule v" style="left:1112px;top:168px;height:800px"></div>
+    <div class="folio rv" style="top:128px"><span class="no">No. 02</span><span class="tx">// The Feature</span><span class="ln"></span><span class="mono">Fig. 02 — <b>S29</b> Overclocked key art</span></div>
+
+    <div class="ed">
+      <div class="eyebrow rv"><span class="ln"></span><span>// What it takes to ship</span></div>
+      <h2 class="hl">
+        <div class="wm-line"><span class="wm anton">Every season</span></div>
+        <div class="wm-line"><span class="wm anton">is a <span class="win-word">LAUNCH</span>.</span></div>
+      </h2>
+      <p class="body rv">Shipping a live game is a relay that never stops. Every season, the build has to land on
+        <b>every platform</b> at the same hour, on top of a game <span class="m">200 million people</span> already play.
+        Build &amp; Release is the team that carries that baton the last mile — from the final commit to the second the drop goes live.</p>
+      <div class="stats">
+        <div class="card rv"><div class="stripe"></div><div class="num"><span class="cu" data-to="200">0</span><span class="u">M+</span></div><div class="lab">Players</div><div class="sub">// global, all-time</div></div>
+        <div class="card rv"><div class="stripe"></div><div class="num"><span class="cu" data-to="30">0</span></div><div class="lab">Seasons</div><div class="sub">// since Feb 2019</div></div>
+        <div class="card rv"><div class="stripe"></div><div class="num"><span class="cu" data-to="28">0</span></div><div class="lab">Legends</div><div class="sub">// and counting</div></div>
+      </div>
+    </div>
+
+    <div class="frame rv"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i><span class="cap">Fig. 02 // Key art</span></div>
+    <div class="pull rv"><span class="bar"></span><div><q>The build is the product. The drop is the promise.</q><span class="src">— placeholder pull-quote · Build &amp; Release</span></div></div>
+  </div>
+
+  <!-- ================= BEAT 3 — THE ROSTER ================= -->
+  <div class="beat b3" id="b3" data-word="ROSTER" data-tag="The Roster" data-acc="orange">
+    <div class="cover" id="cov3"><img class="cover-img" alt="Apex Legends — Steam screenshot"></div>
+    <div class="scrim wash"></div><div class="scrim l"></div><div class="scrim tb"></div><div class="scrim warm"></div>
+    <div class="rule" style="top:112px"></div>
+    <div class="folio rv" style="top:128px"><span class="no">No. 03</span><span class="tx">// The Roster</span><span class="ln"></span><span class="mono">Contact sheet — <b>26 frames</b> // 2 rolls</span></div>
+
+    <div class="ed">
+      <div class="eyebrow rv"><span class="ln"></span><span>// The team behind the drop</span></div>
+      <h2 class="hl">
+        <div class="wm-line"><span class="wm anton">It takes</span></div>
+        <div class="wm-line"><span class="wm anton">a <span class="win-word">ROSTER</span>.</span></div>
+      </h2>
+      <p class="thesis rv">No Legend wins alone, and no build ships alone. Every drop is a <b>team play</b> —
+        engineers, platforms, partners and players, all landing on the <span class="or">same second</span>.</p>
+    </div>
+
+    <div class="big rv"><div class="n">28</div><div class="l">Legends // and counting</div><div class="s">30 seasons · 7+ yrs live</div></div>
+
+    <div class="strip" id="strip">
+      <div class="sprocket rv"><span class="lab left">Roll A // 01–13</span><span class="lab">Proof · Respawn</span></div>
+      <div class="marquee-row"><div class="marquee-track left" id="trackA"></div></div>
+      <div class="sprocket rv"><span class="lab left">Roll B // 14–26</span><span class="lab">Do not cut</span></div>
+      <div class="marquee-row"><div class="marquee-track right" id="trackB"></div></div>
+      <div class="sprocket rv"></div>
+    </div>
+  </div>
+
+  <!-- ================= BEAT 4 — THE DROP ================= -->
+  <div class="beat b4" id="b4" data-word="DROP" data-tag="The Drop" data-acc="mag">
+    <div class="cover" id="cov4"><img class="cover-img" alt=""></div>
+    <video id="vid" class="vid" muted playsinline loop preload="metadata" poster="../assets/steam/ss_04.jpg" disablepictureinpicture>
+      <source src="../media/apex-marked-gameplay-60s.mp4" type="video/mp4">
+    </video>
+    <div class="scrim l"></div><div class="scrim tb"></div>
+    <div class="rule" style="top:112px"></div>
+    <div class="folio rv" style="top:128px"><span class="no">No. 04</span><span class="tx">// The Drop</span><span class="ln"></span><span class="mono"><span class="led"></span>Now playing — <b>S30 // Marked</b> gameplay</span></div>
+    <div class="runchip rv">60s loop · muted</div>
+
+    <div class="mast">
+      <div class="wm-line"><span class="wm osw sub-mast">See you at the</span></div>
+      <div class="wm-line line2"><span class="wm anton mast-word"><span class="win-word">DROP</span></span></div>
+    </div>
+
+    <div class="cta pull rv"><span class="bar"></span><div><q>Come find me after.</q><span class="src">Julie Banta <i>· Build &amp; Release · @respawn</i></span></div></div>
+    <div class="ghc rv"><span class="l">Grace Hopper</span><span class="l">Celebration</span><span class="yr">2026</span><span class="mono">// Thank you</span></div>
+    <div class="endfolio rv"><b>End of feature</b> <span class="sep">//</span> Behind the Drop <span class="sep">//</span> How Apex Legends ships</div>
+  </div>
+
+  <!-- ================= TRANSITION LAYERS ================= -->
+  <div class="plate" id="plate"></div>
+  <svg class="win" id="win" viewBox="0 0 1920 1080" width="1920" height="1080" aria-hidden="true">
+    <defs>
+      <clipPath id="winClip"><text id="winText" x="0" y="0" font-size="100">DROP</text></clipPath>
+      <!-- SVG twins of the beats' CSS scrims, so the window shows the next PAGE, not just the raw art -->
+      <linearGradient id="gL" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#0a0a0b" stop-opacity=".96"/><stop offset=".24" stop-color="#0a0a0b" stop-opacity=".82"/>
+        <stop offset=".44" stop-color="#0a0a0b" stop-opacity=".42"/><stop offset=".62" stop-color="#0a0a0b" stop-opacity=".06"/><stop offset=".72" stop-color="#0a0a0b" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="gCol" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#0a0a0b" stop-opacity="1"/><stop offset=".40" stop-color="#0a0a0b" stop-opacity="1"/>
+        <stop offset=".48" stop-color="#0a0a0b" stop-opacity=".985"/><stop offset=".55" stop-color="#0a0a0b" stop-opacity=".86"/>
+        <stop offset=".63" stop-color="#0a0a0b" stop-opacity=".42"/><stop offset=".72" stop-color="#0a0a0b" stop-opacity=".08"/><stop offset=".80" stop-color="#0a0a0b" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="gTB" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#0a0a0b" stop-opacity=".62"/><stop offset=".22" stop-color="#0a0a0b" stop-opacity="0"/>
+        <stop offset=".66" stop-color="#0a0a0b" stop-opacity="0"/><stop offset="1" stop-color="#0a0a0b" stop-opacity=".78"/>
+      </linearGradient>
+      <linearGradient id="gPlate" x1="0" y1="0" x2="0" y2="1">
+        <stop offset=".6" stop-color="#0a0a0b" stop-opacity="0"/><stop offset=".88" stop-color="#0a0a0b" stop-opacity=".82"/><stop offset="1" stop-color="#0a0a0b" stop-opacity=".92"/>
+      </linearGradient>
+    </defs>
+    <g clip-path="url(#winClip)">
+      <image id="winImg" href="" x="0" y="0" width="1920" height="1080" preserveAspectRatio="none"></image>
+      <g id="winScrim" opacity="0">
+        <rect id="wsWash" width="1920" height="1080" fill="#0a0a0b" opacity=".58"/>
+        <rect id="wsL" width="1920" height="1080" fill="url(#gL)"/>
+        <rect id="wsCol" width="1920" height="1080" fill="url(#gCol)"/>
+        <rect id="wsTB" width="1920" height="1080" fill="url(#gTB)"/>
+        <rect id="wsPlate" width="1920" height="1080" fill="url(#gPlate)"/>
+      </g>
+    </g>
+  </svg>
+
+  <!-- ================= PERSISTENT CHROME ================= -->
+  <div class="tick tk-tl"></div><div class="tick tk-bl"></div><div class="tick tk-tr"></div><div class="tick tk-br"></div>
+  <div class="corner-mark"><span class="dot"></span>RESPAWN <span class="sub">// GHC 2026</span></div>
+  <div class="counter"><b id="ctrNow">01</b> / 04<span class="tag" id="ctrTag">Cover Story</span></div>
+  <div class="dots" id="dots"></div>
+  <div class="hint">&larr; &rarr; · space</div>
+
+  <div class="vignette"></div>
+  <div class="scanlines"></div>
+  <div class="grain"></div>
+  <div id="dbg" hidden></div>
+</section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script>
+(function(){
+  'use strict';
+  var $=function(s,c){return (c||document).querySelector(s);};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+  var stage=$('#stage');
+  var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasGSAP=typeof gsap!=='undefined';
+  var SCALE=1;
+
+  /* ---------- STAGE FIT (GOTCHAS §1) ---------- */
+  function fit(){ SCALE=Math.min(innerWidth/1920,innerHeight/1080); stage.style.transform='translate(-50%,-50%) scale('+SCALE+')'; }
+  addEventListener('resize',fit); fit();
+
+  /* ---------- COVERS: one descriptor drives both the beat background and the window image ---------- */
+  var COVERS={
+    1:{src:'../assets/steam/ss_06.jpg',w:1920,h:1080,px:0,  py:.4,zoom:1.18},
+    2:{src:'../assets/apex/s29b.jpg',  w:1600,h:900, px:1,  py:.5,zoom:1.0},
+    3:{src:'../assets/steam/ss_01.jpg',w:1920,h:1080,px:.5, py:.3,zoom:1.06},
+    4:{src:'../assets/steam/ss_04.jpg',w:1920,h:1080,px:.5, py:.5,zoom:1.0}
+  };
+  function coverBox(c){ var k=Math.max(1920/c.w,1080/c.h)*(c.zoom||1); var w=c.w*k,h=c.h*k;
+    return {x:(1920-w)*c.px,y:(1080-h)*c.py,w:w,h:h}; }
+  Object.keys(COVERS).forEach(function(n){ var c=COVERS[n],b=coverBox(c),img=$('#cov'+n+' img');
+    img.src=c.src; img.style.left=b.x+'px'; img.style.top=b.y+'px'; img.style.width=b.w+'px'; img.style.height=b.h+'px';
+    img.style.transformOrigin=(960-b.x)+'px '+(540-b.y)+'px'; });
+
+  /* ---------- ROSTER: contact sheet = the marquee before it moves ---------- */
+  var P='../assets/apex/cast/';
+  var ROWA=[['bangalore','Bangalore','Assault','48% 20%'],['bloodhound','Bloodhound','Recon','50% 16%'],['octane','Octane','Skirmisher','50% 12%'],['loba','Loba','Support','50% 16%'],['gibraltar','Gibraltar','Support','46% 16%'],['valkyrie','Valkyrie','Skirmisher','50% 12%'],['mad_maggie','Mad Maggie','Assault','50% 16%'],['conduit','Conduit','Support','50% 16%'],['revenant_reborn','Revenant','Skirmisher','46% 14%'],['wattson','Wattson','Controller','50% 16%'],['fuse','Fuse','Assault','50% 16%'],['catalyst','Catalyst','Controller','50% 14%'],['seer','Seer','Recon','50% 14%']];
+  var ROWB=[['crypto','Crypto','Recon','50% 16%'],['lifeline','Lifeline','Support','50% 16%'],['horizon','Horizon','Controller','50% 14%'],['ash','Ash','Assault','50% 14%'],['pathfinder','Pathfinder','Skirmisher','50% 12%'],['wraith','Wraith','Skirmisher','50% 16%'],['caustic','Caustic','Controller','48% 16%'],['mirage','Mirage','Support','50% 16%'],['rampart','Rampart','Controller','50% 16%'],['newcastle','Newcastle','Support','48% 16%'],['alter','Alter','Skirmisher','50% 14%'],['ballistic','Ballistic','Assault','50% 16%'],['legends_group','The Roster','Ensemble','50% 45%','wide']];
+  var MARKS={2:1,9:1,17:1,26:1};
+  function pad(n){return (n<10?'0':'')+n;}
+  function tileHTML(t,i,dup){ var n=pad(i);
+    return '<div class="tile'+(t[4]?' wide':'')+(MARKS[i]?' mark':'')+'"'+(dup?' aria-hidden="true"':'')+'>'+
+      '<div class="face" style="background-image:url(\''+P+t[0]+'.webp\');background-position:'+t[3]+'"></div>'+
+      '<div class="lscrim"></div><div class="edge"></div><span class="pip">'+n+'</span>'+
+      '<div class="nm">'+t[1]+'<span class="ro">// '+t[2]+'</span></div>'+
+      '<div class="proof"><span class="fr">FR '+n+(MARKS[i]?' ✓':'')+'</span></div><i class="grease"></i></div>'; }
+  function buildRow(id,list,start){ var h='';
+    for(var d=0;d<2;d++) list.forEach(function(t,i){ h+=tileHTML(t,start+i,d===1); });
+    $('#'+id).innerHTML=h; }
+  buildRow('trackA',ROWA,1); buildRow('trackB',ROWB,14);
+
+  /* ---------- CHROME ---------- */
+  var BEATS=[1,2,3,4].map(function(n){return $('#b'+n);});
+  var TOTAL=BEATS.length, idx=0, locked=false;
+  var dots=$('#dots');
+  BEATS.forEach(function(b,i){ var d=document.createElement('button'); d.setAttribute('aria-label','Beat '+(i+1));
+    d.addEventListener('click',function(){ go(i+1); }); dots.appendChild(d); });
+  function chrome(n){ var b=BEATS[n-1];
+    $('#ctrNow').textContent=pad(n); $('#ctrTag').textContent=b.getAttribute('data-tag');
+    stage.setAttribute('data-acc',b.getAttribute('data-acc'));
+    $$('#dots button').forEach(function(d,i){ d.classList.toggle('on',i===n-1); });
+    try{ history.replaceState(null,'','#beat='+n); }catch(e){} }
+
+  /* ---------- VIDEO (only plays on its beat) ---------- */
+  var vid=$('#vid'), VID_START=20;    // the Steam cut opens with a letterboxed cinematic (0–19s, plus a legal card); full-frame gameplay starts at 20s — loop that
+  function vidPlay(){ try{ vid.currentTime=VID_START; var p=vid.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){} }
+  function vidStop(){ try{ vid.pause(); vid.currentTime=VID_START; }catch(e){} }
+  vid.addEventListener('timeupdate',function(){ if(vid.paused) return;
+    if(vid.currentTime<VID_START-0.05 || (vid.duration && vid.currentTime>vid.duration-0.45)){ try{ vid.currentTime=VID_START; }catch(e){} } });
+  vid.addEventListener('loadedmetadata',function(){ try{ if(vid.paused) vid.currentTime=VID_START; }catch(e){} });
+
+  /* ---------- COUNT-UPS ---------- */
+  var countTweens=[];
+  function countUps(instant){ countTweens.forEach(function(t){t.kill();}); countTweens=[];
+    $$('.cu').forEach(function(node){ var to=parseFloat(node.getAttribute('data-to'));
+      if(instant||REDUCE||!hasGSAP){ node.textContent=String(to); return; }
+      var o={v:0}; countTweens.push(gsap.to(o,{v:to,duration:1.5,ease:'power2.out',delay:1.35,
+        onUpdate:function(){ node.textContent=String(Math.round(o.v)); },onComplete:function(){ node.textContent=String(to); }})); }); }
+
+  /* ---------- SETTLED (final) STATE PER BEAT ---------- */
+  function resetBeat(b){ // put every animated element at its hidden start state
+    if(!hasGSAP) return;
+    gsap.set($$('.rv',b),{opacity:0,y:14});
+    gsap.set($$('.wm',b),{yPercent:115});
+    gsap.set($$('.rule',b),{scaleX:0,scaleY:1});
+    gsap.set($$('.rule.v',b),{scaleX:1,scaleY:0});
+    gsap.set($$('.win-word',b),{visibility:'inherit'});
+    gsap.set($$('.cover',b),{clipPath:'none'});
+    if(b.id==='b3'){ var strip=$('#strip'); strip.classList.remove('live');
+      gsap.set($$('.tile',b),{opacity:0,y:18}); gsap.set($$('.tile .proof',b),{opacity:1}); gsap.set($$('.tile .grease',b),{opacity:0,scale:.6}); }
+  }
+  function settleBeat(b){
+    if(!hasGSAP) return;
+    gsap.killTweensOf($$('.rv, .wm, .rule, .tile, .proof, .grease, .cover, .cover img',b));
+    gsap.set($$('.rv',b),{opacity:1,y:0});
+    gsap.set($$('.wm',b),{yPercent:0});
+    gsap.set($$('.rule',b),{scaleX:1,scaleY:1});
+    gsap.set($$('.win-word',b),{visibility:'inherit'});
+    gsap.set($$('.cover',b),{clipPath:'none'});
+    gsap.set($$('.cover img',b),{scale:1});
+    if(b.id==='b2') countUps(true);
+    if(b.id==='b3'){ gsap.set($$('.tile',b),{opacity:1,y:0}); gsap.set($$('.tile .proof',b),{opacity:0});
+      gsap.set($$('.tile.mark .grease',b),{opacity:1,scale:1}); $('#strip').classList.add('live'); }
+  }
+
+  /* ---------- ENTRANCES (first reveal ≥ 0.4s so it lands after the transition arrives) ---------- */
+  function enterBeat(b,cold){
+    if(!hasGSAP||REDUCE){ settleBeat(b); return; }
+    resetBeat(b);
+    var tl=gsap.timeline();
+    var rule=$('.rule:not(.v)',b), vrule=$('.rule.v',b), folio=$('.folio',b);
+    tl.to(rule,{scaleX:1,duration:.85,ease:'expo.out'},0.4);
+    if(vrule) tl.to(vrule,{scaleY:1,duration:.9,ease:'expo.out'},0.55);
+    tl.to(folio,{opacity:1,y:0,duration:.55,ease:'power3.out'},0.55);
+    var wms=$$('.wm',b);
+    if(b.id==='b1'){
+      var cov=$('.cover',b), img=$('img',cov);
+      if(cold){ gsap.set(cov,{clipPath:'polygon(0 0,0 0,-14% 100%,-14% 100%)'});
+        tl.to(cov,{clipPath:'polygon(0 0,114% 0,100% 100%,0 100%)',duration:1.05,ease:'expo.inOut'},0.45); }
+      gsap.fromTo(img,{scale:1.05},{scale:1,duration:16,ease:'none'});
+      tl.to(wms[0],{yPercent:0,duration:.9,ease:'expo.out'},0.7)
+        .to(wms[1],{yPercent:0,duration:1.05,ease:'expo.out'},0.82)
+        .to($('.deck',b),{opacity:1,y:0,duration:.6,ease:'power3.out'},1.25)
+        .to($('.byline',b),{opacity:1,y:0,duration:.6,ease:'power3.out'},1.38)
+        .to($('.teaser',b),{opacity:1,y:0,duration:.6,ease:'power3.out'},1.5)
+        .to($('.ghc',b),{opacity:1,y:0,duration:.6,ease:'power3.out'},1.55)
+        .to($('.spine',b),{opacity:1,y:0,duration:.8,ease:'power2.out'},1.7);
+    }
+    if(b.id==='b2'){
+      tl.to($('.eyebrow',b),{opacity:1,y:0,duration:.5,ease:'power3.out'},0.55)
+        .to(wms,{yPercent:0,duration:.95,ease:'expo.out',stagger:.12},0.66)
+        .to($('.body',b),{opacity:1,y:0,duration:.6,ease:'power3.out'},1.05)
+        .to($$('.card',b),{opacity:1,y:0,duration:.55,ease:'power3.out',stagger:.1},1.18)
+        .to($('.frame',b),{opacity:1,y:0,duration:.7,ease:'power3.out'},0.95)
+        .to($('.pull',b),{opacity:1,y:0,duration:.6,ease:'power3.out'},1.45);
+      countUps(false);
+    }
+    if(b.id==='b3'){
+      var tiles=$$('.tile',b), strip=$('#strip');
+      tl.to($('.eyebrow',b),{opacity:1,y:0,duration:.5,ease:'power3.out'},0.55)
+        .to(wms,{yPercent:0,duration:.95,ease:'expo.out',stagger:.12},0.66)
+        .to($('.thesis',b),{opacity:1,y:0,duration:.6,ease:'power3.out'},1.05)
+        .to($('.big',b),{opacity:1,y:0,duration:.7,ease:'power3.out'},1.1)
+        .to($$('.sprocket',b),{opacity:1,y:0,duration:.5,ease:'power2.out',stagger:.06},0.9)
+        // the proof sheet: frames pop in one by one like a contact print
+        .to(tiles.slice(0,13),{opacity:1,y:0,duration:.35,ease:'power2.out',stagger:.045},1.0)
+        .to(tiles.slice(26,39),{opacity:1,y:0,duration:.35,ease:'power2.out',stagger:.045},1.25)
+        .set(tiles.slice(13,26).concat(tiles.slice(39)),{opacity:1,y:0},2.0)
+        // the grease-pencil picks
+        .to($$('.tile.mark .grease',b),{opacity:1,scale:1,duration:.35,ease:'back.out(2)',stagger:.12},2.1)
+        // ...then the sheet goes live and flows into the roster marquee
+        .to($$('.tile .proof',b),{opacity:0,duration:.7,ease:'power2.inOut'},2.75)
+        .add(function(){ if(!window.__sheetFreeze) strip.classList.add('live'); },2.75);
+    }
+    if(b.id==='b4'){
+      tl.to(wms[0],{yPercent:0,duration:.9,ease:'expo.out'},0.7)
+        .to(wms[1],{yPercent:0,duration:1.05,ease:'expo.out'},0.82)
+        .to($('.runchip',b),{opacity:1,y:0,duration:.5,ease:'power2.out'},0.7)
+        .to($('.cta',b),{opacity:1,y:0,duration:.6,ease:'power3.out'},1.25)
+        .to($('.ghc',b),{opacity:1,y:0,duration:.6,ease:'power3.out'},1.4)
+        .to($('.endfolio',b),{opacity:1,y:0,duration:.6,ease:'power3.out'},1.5);
+    }
+    return tl;
+  }
+
+  /* ---------- TEXT-AS-WINDOW: measure the DOM word, mirror it as an SVG clipPath, open it ---------- */
+  var mctx=document.createElement('canvas').getContext('2d');
+  function wordGeom(el){ // el is an inline span: its rect is the font's content area, baseline = top + ascent
+    var st=stage.getBoundingClientRect(), r=el.getBoundingClientRect(), cs=getComputedStyle(el);
+    var fs=parseFloat(cs.fontSize);
+    mctx.font='400 '+fs+'px Anton';
+    var m=mctx.measureText(el.textContent);
+    var fa=(m.fontBoundingBoxAscent!==undefined)?m.fontBoundingBoxAscent:fs*.9;
+    return {x:(r.left-st.left)/SCALE, y:(r.top-st.top)/SCALE+fa, fs:fs, text:el.textContent, w:m.width};
+  }
+  // find an ink pixel near the word's visual centre, with some margin, so the window opens to a full frame
+  var inkCache={};
+  function inkCenter(text){ if(inkCache[text]) return inkCache[text];
+    var c=document.createElement('canvas'), W=c.width=1400, H=c.height=260, x=c.getContext('2d');
+    x.font='400 100px Anton'; x.fillStyle='#fff'; x.fillText(text,20,190);
+    var w=x.measureText(text).width, cx0=20+w/2, cy0=190-38, d=x.getImageData(0,0,W,H).data;
+    function ink(px,py){ return px>=0&&py>=0&&px<W&&py<H&&d[(py*W+px)*4+3]>200; }
+    var best=null,bd=1e12,R=7;
+    for(var py=0;py<H;py+=2) for(var px=0;px<W;px+=2){ if(!ink(px,py)) continue;
+      var ok=ink(px-R,py)&&ink(px+R,py)&&ink(px,py-R)&&ink(px,py+R)&&ink(px-5,py-5)&&ink(px+5,py+5)&&ink(px-5,py+5)&&ink(px+5,py-5);
+      if(!ok) continue; var dd=(px-cx0)*(px-cx0)+(py-cy0)*(py-cy0); if(dd<bd){bd=dd;best=[px,py];} }
+    if(!best) best=[cx0,cy0];
+    return inkCache[text]={ex:(best[0]-20)/100, ey:(best[1]-190)/100, margin:R/100};
+  }
+  var win=$('#win'), winText=$('#winText'), winImg=$('#winImg'), plate=$('#plate'), winScrim=$('#winScrim');
+  var WIN_SCRIMS={1:['wsL','wsTB'],2:['wsCol','wsTB','wsPlate'],3:['wsWash','wsL','wsTB'],4:['wsL','wsTB']};
+  function armWindow(fromBeat,toN){
+    var el=$('.win-word',fromBeat); if(!el) return null;
+    var g=wordGeom(el), ic=inkCenter(g.text), c=COVERS[toN], b=coverBox(c);
+    winText.textContent=g.text; winText.setAttribute('x',g.x); winText.setAttribute('y',g.y); winText.setAttribute('font-size',g.fs);
+    winImg.setAttribute('href',c.src); winImg.setAttribute('x',b.x); winImg.setAttribute('y',b.y); winImg.setAttribute('width',b.w); winImg.setAttribute('height',b.h);
+    ['wsWash','wsL','wsCol','wsTB','wsPlate'].forEach(function(id){ $('#'+id).style.display=WIN_SCRIMS[toN].indexOf(id)>-1?'':'none'; });
+    gsap.set(winScrim,{opacity:0});
+    var ox=g.x+ic.ex*g.fs, oy=g.y+ic.ey*g.fs, marginPx=ic.margin*g.fs;
+    var S=Math.min(220,Math.max(40,2600/marginPx));   // big enough that the ink swallows the frame before the plate fades
+    gsap.set(winText,{scale:1,svgOrigin:ox+' '+oy});
+    return {el:el,S:S,ox:ox,oy:oy};
+  }
+
+  /* ---------- NAVIGATION ---------- */
+  function dbg(){ try{ var d=$('#dbg'); d.textContent='beat='+idx+' vidPaused='+vid.paused+' vidSrc='+(vid.currentSrc?'ok':'none')+' live='+$('#strip').classList.contains('live')+' acc='+stage.getAttribute('data-acc'); }catch(e){} }
+  function activate(n,cold){ var b=BEATS[n-1]; gsap.set(b,{autoAlpha:1}); chrome(n);
+    if(n===4) vidPlay(); else vidStop(); var t=enterBeat(b,cold); setTimeout(dbg,50); return t; }
+
+  function go(n){ n=Math.max(1,Math.min(TOTAL,n)); if(n===idx||locked) return;
+    if(!hasGSAP||REDUCE){ jump(n); return; }
+    var from=BEATS[idx-1], to=BEATS[n-1]; locked=true;
+    gsap.killTweensOf([winText,plate,win,winScrim]);
+    settleBeat(from);                 // measure the word at rest, even if its entrance was still running
+    var w=armWindow(from,n);
+    var tl=gsap.timeline({onComplete:function(){ locked=false; gsap.set(from,{autoAlpha:0}); }});
+    window.__tl=tl;
+    if(w){
+      tl.set(win,{autoAlpha:1},0).set(w.el,{visibility:'hidden'},0)
+        .set(plate,{visibility:'visible',opacity:0},0)
+        .to(plate,{opacity:1,duration:.3,ease:'power2.in'},0)             // outgoing page goes to black behind the letters
+        .to(winText,{scale:w.S,duration:1.05,ease:'power3.in'},0.12)        // the letters become the window and swallow the frame
+        .to(winScrim,{opacity:1,duration:.55,ease:'power2.inOut'},0.4)      // the next page's scrims settle inside the window
+        .add(function(){ idx=n; activate(n,false); },0.62)                  // next page is live underneath (entrance starts ≥.4s later)
+        .to([plate,win],{opacity:0,duration:.26,ease:'power1.inOut'},1.04)   // by now the ink covers the far corner
+        .set([plate,win],{visibility:'hidden'},1.3);
+    }else{
+      tl.to(from,{autoAlpha:0,duration:.35},0).add(function(){ idx=n; activate(n,false); },0.3);
+    }
+  }
+  function jump(n){ n=Math.max(1,Math.min(TOTAL,n)); locked=false;
+    if(hasGSAP){ gsap.killTweensOf('*'); gsap.set([plate,win],{autoAlpha:0}); }
+    BEATS.forEach(function(b,i){ if(hasGSAP) gsap.set(b,{autoAlpha:i===n-1?1:0}); else b.style.opacity=i===n-1?1:0, b.style.visibility=i===n-1?'visible':'hidden'; });
+    idx=n; chrome(n); settleBeat(BEATS[n-1]); if(n===4) vidPlay(); else vidStop(); setTimeout(dbg,50); }
+
+  addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown','PageDown',' '].indexOf(e.key)>-1){ e.preventDefault(); go(idx+1); }
+    else if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>-1){ e.preventDefault(); go(idx-1); }
+    else if(e.key==='Home'){ go(1); } else if(e.key==='End'){ go(TOTAL); } });
+  window.go=go; window.jump=jump;
+
+  /* ---------- BOOT: #beat=N lands settled; plain load runs the cold open ---------- */
+  function parseHash(){ var m=/beat=(\d)/.exec(location.hash||''); var d=/debug=([\w.:]+)/.exec(location.hash||'');
+    return {beat:m?parseInt(m[1],10):0, debug:d?d[1]:''}; }
+  function boot(){
+    var h=parseHash();
+    Object.keys(COVERS).forEach(function(n){ var i=new Image(); i.src=COVERS[n].src; });
+    if(h.debug==='sheet') window.__sheetFreeze=true;
+    if(h.beat){ jump(h.beat);
+      if(h.debug==='sheet'&&hasGSAP){ var b=BEATS[2]; $('#strip').classList.remove('live'); gsap.set($$('.tile .proof',b),{opacity:1}); }
+      if(h.debug==='win'&&hasGSAP){ var w=armWindow(BEATS[h.beat-1],(h.beat%TOTAL)+1); if(w){ gsap.set(win,{autoAlpha:1}); gsap.set(w.el,{visibility:'hidden'}); } }
+      // debug=go:0.55 → start the transition to the next beat and freeze it at t=0.55s (QA of the window mid-flight)
+      var gm=/^go:([\d.]+)$/.exec(h.debug); if(gm&&hasGSAP){ go((h.beat%TOTAL)+1); if(window.__tl){ window.__tl.seek(parseFloat(gm[1]),false).pause(); } }
+    } else { idx=1; BEATS.forEach(function(b,i){ if(hasGSAP) gsap.set(b,{autoAlpha:i===0?1:0}); }); chrome(1); vidStop(); enterBeat(BEATS[0],true); }
+  }
+  function ready(){ if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(boot); } else { boot(); } }
+  if(document.readyState==='loading'){ addEventListener('DOMContentLoaded',ready); } else { ready(); }
+})();
+</script>
+</body>
+</html>

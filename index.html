@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GHC 2026 — Apex deck · 3 directions</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=DM+Sans:wght@400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0c0d0f;--panel:#15171b;--line:#24282e;--orange:#ff4e33;--teal:#4fb6c9;--mag:#ff2d9a;--ink:#eceae6;--mut:#8d9098;
+        --disp:"Oswald",sans-serif;--body:"DM Sans",sans-serif;--mono:"Share Tech Mono",monospace}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:var(--bg);color:var(--ink);font-family:var(--body);min-height:100%}
+  header{padding:28px 40px 18px;border-bottom:1px solid var(--line);display:flex;align-items:flex-end;gap:28px;flex-wrap:wrap}
+  .eyebrow{font-family:var(--disp);font-weight:500;letter-spacing:.32em;text-transform:uppercase;font-size:.72rem;color:var(--orange)}
+  h1{font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:1.9rem;line-height:1;margin-top:8px}
+  h1 span{color:var(--mut);font-weight:400}
+  .sync{margin-left:auto;display:flex;align-items:center;gap:10px}
+  .sync .lab{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase}
+  button{font-family:var(--disp);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.74rem;color:var(--ink);
+         background:transparent;border:1px solid var(--line);padding:7px 13px;cursor:pointer;transition:.18s}
+  button:hover{border-color:var(--orange);color:var(--orange)}
+  button.on{background:var(--orange);border-color:var(--orange);color:#0c0d0f}
+  main{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:22px 40px 40px}
+  @media (max-width:1500px){main{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line)}
+  .card .head{padding:14px 16px 12px;display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line)}
+  .card .id{font-family:var(--mono);font-size:.78rem;color:var(--orange);letter-spacing:.12em}
+  .card h2{font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:1.15rem}
+  .card .one{font-size:.86rem;color:var(--mut);line-height:1.4;padding:10px 16px 0}
+  .card .frame{position:relative;aspect-ratio:16/9;background:#050506;margin:12px 16px 0;border:1px solid var(--line);overflow:hidden}
+  .card iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#050506}
+  .card .bar{display:flex;align-items:center;gap:8px;padding:12px 16px 16px;flex-wrap:wrap}
+  .card .bar .lab{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;margin-right:4px}
+  .card .bar a{margin-left:auto;font-family:var(--disp);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.74rem;color:var(--teal);text-decoration:none;border-bottom:1px solid transparent}
+  .card .bar a:hover{border-bottom-color:var(--teal)}
+  .note{padding:0 40px 40px;color:var(--mut);font-size:.86rem;line-height:1.55;max-width:980px}
+  .note b{color:var(--ink);font-weight:500}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="eyebrow">// Respawn × GHC 2026 — direction bake-off</div>
+    <h1>Behind the Drop <span>· three proof-of-concept directions</span></h1>
+  </div>
+  <div class="sync">
+    <span class="lab">Jump all three to beat</span>
+    <button data-all="1" class="on">01</button><button data-all="2">02</button><button data-all="3">03</button><button data-all="4">04</button>
+  </div>
+</header>
+
+<main id="grid">
+  <section class="card" data-src="poc/A-broadcast.html">
+    <div class="head"><span class="id">A</span><h2>Broadcast</h2></div>
+    <div class="one">The talk staged as a live ALGS esports broadcast: lower-thirds, tickers, switcher wipes and flash-frame cuts. The roster marquee becomes the bottom player crawl.</div>
+    <div class="frame"><iframe title="A — Broadcast"></iframe></div>
+    <div class="bar"><span class="lab">Beat</span><button data-beat="1" class="on">01</button><button data-beat="2">02</button><button data-beat="3">03</button><button data-beat="4">04</button><a target="_blank">Open full screen ↗</a></div>
+  </section>
+
+  <section class="card" data-src="poc/B-coverstory.html">
+    <div class="head"><span class="id">B</span><h2>Cover Story</h2></div>
+    <div class="one">The Apex slide's editorial "cover story" grown into a full language: giant mastheads, folios, text-as-window reveals and page-turn wipes. The roster starts as a contact sheet and assembles into the marquee.</div>
+    <div class="frame"><iframe title="B — Cover Story"></iframe></div>
+    <div class="bar"><span class="lab">Beat</span><button data-beat="1" class="on">01</button><button data-beat="2">02</button><button data-beat="3">03</button><button data-beat="4">04</button><a target="_blank">Open full screen ↗</a></div>
+  </section>
+
+  <section class="card" data-src="poc/C-dropsequence.html">
+    <div class="head"><span class="id">C</span><h2>Drop Sequence</h2></div>
+    <div class="one">Staged inside the game's own UI language: legend select → jumpmaster drop → the ring closing → champion banner. The roster marquee is the legend-select carousel.</div>
+    <div class="frame"><iframe title="C — Drop Sequence"></iframe></div>
+    <div class="bar"><span class="lab">Beat</span><button data-beat="1" class="on">01</button><button data-beat="2">02</button><button data-beat="3">03</button><button data-beat="4">04</button><a target="_blank">Open full screen ↗</a></div>
+  </section>
+</main>
+
+<p class="note">
+  <b>How to evaluate:</b> the thumbnails give a side-by-side feel for layout and palette, but the transitions are the point — use <b>Open full screen</b> on each one and step through the four beats with the arrow keys (press F11 / ⌃⌘F for full screen). Videos only play in the full-screen view. Each POC has a short notes file next to it in <code>poc/</code>. All three share the same content (a placeholder title, real public Apex facts, the Legend roster, the Season 30 "Marked" trailer) so only the direction differs.
+</p>
+
+<script>
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.card'));
+  function load(card,beat){
+    var src=card.getAttribute('data-src'), ifr=card.querySelector('iframe');
+    ifr.src=src+'?v='+Date.now()+'#beat='+beat;           // cache-bust forces a fresh load at that beat
+    [].forEach.call(card.querySelectorAll('[data-beat]'),function(b){ b.classList.toggle('on', b.getAttribute('data-beat')===String(beat)); });
+  }
+  cards.forEach(function(card){
+    card.querySelector('a').href=card.getAttribute('data-src');
+    [].forEach.call(card.querySelectorAll('[data-beat]'),function(b){ b.addEventListener('click',function(){ load(card,b.getAttribute('data-beat')); }); });
+    load(card,1);
+  });
+  [].forEach.call(document.querySelectorAll('[data-all]'),function(b){
+    b.addEventListener('click',function(){
+      var n=b.getAttribute('data-all');
+      [].forEach.call(document.querySelectorAll('[data-all]'),function(x){ x.classList.toggle('on',x===b); });
+      cards.forEach(function(c){ load(c,n); });
+    });
+  });
+})();
+</script>
+</body>
+</html>
