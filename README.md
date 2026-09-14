@@ -1,3 +1,9 @@
+# Behind the Drop → Connect Your Dots
+
+**The demo deck:** [`deck/connect-your-dots.html`](deck/connect-your-dots.html) — Julie Banta's GHC 2026 talk
+*Connect Your Dots*, built in the Drop Sequence direction (22 beats). Press next on the intro video to play it;
+arrow keys step the beats, **N** shows the speaker notes, **F** goes fullscreen. Chrome recommended.
+
 # Behind the Drop — three proof-of-concept directions
 
 Three single-page proof-of-concept designs for an Apex Legends–styled talk deck, built to pick a
