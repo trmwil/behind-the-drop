@@ -275,6 +275,7 @@
   .selpanel .face i{position:absolute;inset:0;background-size:cover;background-position:50% 8%;transform:scale(1.34);transform-origin:50% 26%;filter:contrast(1.06) saturate(1.1) brightness(1.04)}
   .selpanel .face .fs{position:absolute;left:0;right:0;bottom:0;height:40%;background:linear-gradient(180deg,rgba(10,10,12,0),rgba(10,10,12,.7))}
   .selpanel .face::after{content:"";position:absolute;right:0;top:0;bottom:0;width:1px;background:rgba(236,234,230,.12)}
+  .selpanel .face .sweep{position:absolute;top:0;bottom:0;left:0;width:36px;opacity:0;pointer-events:none;z-index:3;background:linear-gradient(90deg,rgba(79,182,201,0),rgba(79,182,201,.6) 50%,rgba(79,182,201,0))}
   .selpanel .info{flex:1;padding:26px 30px 0 28px;display:flex;flex-direction:column;position:relative}
   .selpanel .lab{font-family:var(--mono);font-size:13px;letter-spacing:.3em;color:var(--teal);display:flex;align-items:center;gap:10px}
   .selpanel .nm{margin-top:12px;font-family:var(--mast);font-size:58px;line-height:1;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
@@ -2911,11 +2912,18 @@ window.DotsCore = (function () {
       if(!best) return; best.classList.add('sel');
       var l=ROSTER[+best.dataset.i], i=+best.dataset.i;
       var layers=[$('.selpanel .face .fa',scope),$('.selpanel .face .fb',scope)]; if(!layers[0]) return;
-      var nxt=layers[1-selLayer], curL=layers[selLayer];
+      var nxt=layers[1-selLayer], curL=layers[selLayer], face=$('.selpanel .face',scope);
       nxt.style.backgroundImage=castUrl(l[2]); nxt.style.backgroundPosition=l[3];
       $('.selpanel .nm',scope).textContent=l[0]; $('.selpanel .cl',scope).textContent='// '+l[1]; var ix=$('.selpanel .idx',scope); if(ix) ix.textContent=String(i+1).padStart(2,'0');
       if(REDUCE){ nxt.style.opacity=1; curL.style.opacity=0; selLayer=1-selLayer; return; }
-      G.fromTo(nxt,{opacity:0},{opacity:1,duration:.32,ease:'power2.out',onComplete:function(){ curL.style.opacity=0; }});
+      /* a clean cut, not a crossfade: the portraits are cut-outs, so they must never overlap.
+         old out (0.12 s) → new in (0.2 s), under a quick scan sweep */
+      var sweep=$('.sweep',face); if(!sweep){ sweep=document.createElement('span'); sweep.className='sweep'; face.appendChild(sweep); }
+      G.killTweensOf([nxt,curL,sweep]);
+      G.set(nxt,{opacity:0});
+      G.to(curL,{opacity:0,duration:.12,ease:'power1.in'});
+      G.fromTo(nxt,{opacity:0},{opacity:1,duration:.2,ease:'power2.out',delay:.13});
+      G.fromTo(sweep,{opacity:1,xPercent:-120},{xPercent:820,duration:.34,ease:'power2.inOut',onComplete:function(){ G.set(sweep,{opacity:0}); }});
       G.fromTo($('.selpanel .nm',scope),{x:18,opacity:0},{x:0,opacity:1,duration:.35,ease:'power3.out'});
       G.fromTo($('.selpanel .cl',scope),{x:18,opacity:0},{x:0,opacity:1,duration:.35,ease:'power3.out',delay:.05});
       G.fromTo($('.selpanel .brk',scope),{scale:1.08,opacity:.3},{scale:1,opacity:1,duration:.4,ease:'back.out(3)'});
