@@ -2395,7 +2395,7 @@
     <span class="hatch"></span>
     <div class="cta hud" id="s24-cta">
       <span class="hb tl"></span><span class="hb tr"></span><span class="hb bl"></span><span class="hb br"></span>
-      Go connect<br><em id="s24-em">your dots.</em>
+      Go connect <em id="s24-em">your dots.</em>
     </div>
     <div class="lt rv"><span class="nm">Julie Banta</span><span class="sep"></span><span class="ro">Director, Build &amp; Release &middot; Apex Legends &middot; Respawn Entertainment</span></div>
     <div class="s24-find rv"><span class="chip teal">Come find me after</span><span class="tx">AMA about everything here &nbsp;<b>// GRACE HOPPER CELEBRATION 2026</b></span></div>
@@ -2419,17 +2419,17 @@
     #s24 .s24-l{background:linear-gradient(90deg,rgba(10,10,11,.62) 0%,rgba(10,10,11,.28) 36%,rgba(10,10,11,0) 62%)}
     #s24 .s24-live{position:absolute;left:96px;top:150px;display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:14px;letter-spacing:.24em;color:var(--ink)}
     #s24 .s24-host{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none}
-    #s24 .s24-close{left:96px;bottom:118px;width:1180px;height:330px;background:rgba(10,10,12,.9);padding:34px 40px 0 44px;display:flex;flex-direction:column}
+    #s24 .s24-close{left:96px;bottom:118px;width:1500px;height:300px;background:rgba(10,10,12,.9);padding:34px 40px 0 44px;display:flex;flex-direction:column}
     #s24 .s24-close .cta{align-self:flex-start;font-family:var(--mast);font-size:92px;line-height:.95;text-transform:uppercase;letter-spacing:.005em;text-shadow:0 12px 60px rgba(0,0,0,.65)}
     #s24 .s24-close .cta em{font-style:normal;color:var(--orange)}
-    #s24 .s24-close .lt{margin-top:22px;display:flex;align-items:center;gap:18px}
+    #s24 .s24-close .lt{margin-top:20px;display:flex;align-items:center;gap:18px}
     #s24 .s24-close .lt .nm{font-family:var(--disp);font-weight:600;font-size:24px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
     #s24 .s24-close .lt .ro{font-family:var(--disp);font-weight:400;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:#cfd1d5;white-space:nowrap}
     #s24 .s24-close .lt .sep{width:1px;height:26px;background:rgba(236,234,230,.25);flex:0 0 auto}
-    #s24 .s24-find{margin-top:18px;display:flex;align-items:center;gap:18px;white-space:nowrap}
-    #s24 .s24-find .chip{font-size:21px;letter-spacing:.26em;padding:11px 20px 10px}
-    #s24 .s24-find .tx{font-family:var(--disp);font-weight:400;font-size:17px;letter-spacing:.18em;text-transform:uppercase;color:#cfd1d5}
-    #s24 .s24-find .tx b{font-family:var(--mono);font-weight:400;font-size:14px;letter-spacing:.2em;color:var(--teal)}
+    #s24 .s24-find{margin-top:22px;display:flex;align-items:center;gap:24px;white-space:nowrap}
+    #s24 .s24-find .chip{font-size:32px;letter-spacing:.22em;padding:14px 28px 12px}
+    #s24 .s24-find .tx{font-family:var(--disp);font-weight:400;font-size:23px;letter-spacing:.16em;text-transform:uppercase;color:#cfd1d5}
+    #s24 .s24-find .tx b{font-family:var(--mono);font-weight:400;font-size:16px;letter-spacing:.2em;color:var(--teal)}
     #s24 .s24-minimap{position:absolute;right:96px;bottom:118px;width:210px;height:210px}
     #s24 .s24-minimap svg{width:100%;height:100%;overflow:visible}
     #s24 .s24-minimap .spin{transform-origin:105px 105px;animation:s24spin 14s linear infinite}
@@ -2449,11 +2449,11 @@
       var q=G.utils.selector(s), em=s.querySelector('#s24-em'), host=s.querySelector('#s24-host');
       if(this._dt){ this._dt.kill(); this._dt=null; }
       /* YOUR DOTS.: the Constellation assembles the second line in place (measured before the panel's entrance offset exists) */
-      var dw=DECK.dotWord(em,{host:host,fly:2.6,link:3.0,color:'#ff4e33',linkColor:'#eceae6',seed:24}); this._dt=dw;
+      var dw=DECK.dotWord(em,{host:host,fly:1.4,link:1.4,color:'#ff4e33',linkColor:'#eceae6',seed:24}); this._dt=dw;   /* the closing tagline lands fast */
       tl.fromTo(q('.s24-live'),{opacity:0,x:-20},{opacity:1,x:0,duration:.5,ease:'power2.out'},.5)
         .fromTo(q('.s24-close'),{opacity:0,y:44},{opacity:1,y:0,duration:.65,ease:'power3.out'},.85);
-      tl.add(dw.tl,1.5);
-      var L=1.5+dw.lockAt;
+      tl.add(dw.tl,1.2);
+      var L=1.2+dw.lockAt;
       DECK.snapHB(tl,s.querySelector('#s24-cta'),L+.4);
       tl.fromTo(q('.lt'),{opacity:0,y:12},{opacity:1,y:0,duration:.5,ease:'power3.out'},L+.5)
         .fromTo(q('.s24-find'),{opacity:0,y:12,scale:.96},{opacity:1,y:0,scale:1,duration:.55,ease:'back.out(1.6)',transformOrigin:'0 50%'},L+.7)
