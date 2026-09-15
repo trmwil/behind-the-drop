@@ -166,8 +166,8 @@
      each side has a .ping ; .tag flips from data-from to data-to
      ===================================================================== */
   .dl{position:absolute;left:96px;right:96px;display:flex;flex-direction:column;gap:14px}
-  .dl-head{display:flex;align-items:center;gap:0;padding:0 0 6px}
-  .dl-head span{font-family:var(--mono);font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--teal)}
+  .dl-head{display:flex;align-items:center;gap:0;padding:0 0 9px;border-bottom:1px solid rgba(79,182,201,.38)}   /* Julie: the teal column heads bigger + more emphasized */
+  .dl-head span{font-family:var(--disp);font-weight:600;font-size:21px;line-height:1.1;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);text-shadow:0 0 18px rgba(79,182,201,.35)}
   .dl-head .a{flex:0 0 var(--dl-a,700px)}
   .dl-head .m{flex:0 0 var(--dl-m,200px);text-align:center}
   .dl-head .b{flex:1}
@@ -306,14 +306,6 @@
   .counter{top:50px;right:64px;text-align:right;font-family:var(--disp);font-weight:500;letter-spacing:.22em;font-size:16px;color:var(--muted)}
   .counter b{color:var(--ink);font-weight:600}
   .counter .tag2{display:block;margin-top:6px;font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--teal)}
-  .compass{top:44px;left:50%;width:560px;margin-left:-280px}
-  .compass .tape-win{position:relative;height:30px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent)}
-  .compass .tape{position:absolute;left:280px;top:0;height:30px;width:2880px;
-    background:repeating-linear-gradient(90deg,rgba(236,234,230,.55) 0 1px,transparent 1px 180px) 0 0/2880px 30px no-repeat,repeating-linear-gradient(90deg,rgba(236,234,230,.22) 0 1px,transparent 1px 36px) 0 18px/2880px 8px no-repeat}
-  .compass .tape span{position:absolute;top:0;transform:translateX(-50%);font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:rgba(236,234,230,.7)}
-  .compass .tape span.card{color:var(--ink);font-family:var(--disp);font-weight:600;font-size:13px;letter-spacing:.2em}
-  .compass .needle{position:absolute;left:50%;top:-6px;margin-left:-6px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid var(--orange);filter:drop-shadow(0 0 6px rgba(255,78,51,.8))}
-  .compass .hdg{position:absolute;left:50%;top:32px;transform:translateX(-50%);font-family:var(--mono);font-size:13px;letter-spacing:.24em;color:var(--orange);white-space:nowrap}
   .footmono{left:64px;bottom:50px;font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--muted)}
   .footmono b{color:var(--teal);font-weight:400}
   .hint{right:64px;bottom:50px;font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--muted)}
@@ -694,13 +686,10 @@
   </script>
 </section>
 
-<!-- beat 05 | ch 1 | in: drop | the fork on the map: UF double major → finance vs software; USAA pinged -->
+<!-- beat 05 | ch 1 | in: drop | plain black (Julie's review) | the fork on the map: UF double major → finance vs software; USAA pinged -->
 <section class="beat" id="s05" data-in="drop" data-ch="1" data-name="DECISIONS" data-hdg="88"
          data-notes="Her slide 4, her words on the labels. Two landing zones: the UF double major (Information Systems + Finance) forks into FINANCE PATHWAYS and SOFTWARE DEVELOPMENT; the ring closes on software, and the USAA IT internship (San Antonio, TX · known for converting 75% of interns to full-time roles) pings off it. Animation: the flight line draws in, the fork splits, the ring closes on the chosen LZ.">
-  <div class="bg" style="background-image:url('../assets/steam/ss_06.jpg')"></div>
-  <div class="scrim full"></div>
   <div class="topo"></div>
-  <div class="scrim vert"></div>
   <div class="s05-ringtint"></div>
 
   <div class="col s05-col">
@@ -793,13 +782,10 @@
   </script>
 </section>
 
-<!-- beat 06 | ch 1 | in: drop | the drop path: six career waypoints, jumpmaster's route across the map, MBA unlock -->
+<!-- beat 06 | ch 1 | in: drop | plain black (Julie's review) | the drop path: six career waypoints, jumpmaster's route across the map; the MBA (class of 2020) unlocks right after STAGE 04 -->
 <section class="beat" id="s06" data-in="drop" data-ch="1" data-name="JOURNEY" data-hdg="104"
-         data-notes="Her slide 5, six stages verbatim. The jumpmaster's route: STAGE 01 Software Engineer (insurance tech) → Solutions Architect, EA (Mar 2020) → Senior Solutions Architect (Jun 2022) → B&amp;R Manager, Apex (Aug 2022) → Senior Manager (Dec 2023) → Director of Build &amp; Release (Jun 2025); the MBA unlock lands at the summit. Animation: the flight line draws across the map and each waypoint pops as the line reaches it.">
-  <div class="bg" style="background-image:url('../assets/steam/ss_05.jpg')"></div>
-  <div class="scrim full"></div>
+         data-notes="Her slide 5, six stages verbatim. The jumpmaster's route: STAGE 01 Software Engineer (insurance tech) → Solutions Architect, EA (Mar 2020) → Senior Solutions Architect (Jun 2022) → B&amp;R Manager, Apex (Aug 2022) → Senior Manager (Dec 2023) → Director of Build &amp; Release (Jun 2025); the MBA (class of 2020) unlocks right after STAGE 04, the gold banner stacked on that card. Animation: the flight line draws across the map, each waypoint pops as the line reaches it, and the MBA banner snaps in off the STAGE 04 waypoint.">
   <div class="topo"></div>
-  <div class="scrim vert"></div>
 
   <div class="col s06-col">
     <div class="eyebrow rv"><span class="ln"></span><span>// Chapter 01 · The drop path</span><span class="no" id="s06-no">STAGE 06 / 06</span></div>
@@ -811,7 +797,7 @@
 
   <svg class="pathsvg" viewBox="0 0 1920 1080" aria-hidden="true">
     <path class="flight orange solid" id="s06-route" d=""/>
-    <path class="flight s06-drop" id="s06-drop" d="M 1650 330 V 560"/>
+    <path class="flight s06-drop" id="s06-drop" d="M 1090 548 V 329 H 1114"/>
   </svg>
 
   <div class="wp rv s06-w" data-x="250" data-y="760" style="left:250px;top:760px">
@@ -826,7 +812,7 @@
     <span class="dm"></span>
     <span class="lab"><span class="n">STAGE 03</span><span class="t">Senior Solutions Architect</span><span class="d">EA &bull; JUNE 2022</span><span class="x">Promoted to lead architectural design for core collaboration and productivity tools.</span></span>
   </div>
-  <div class="wp rv up s06-w" data-x="1090" data-y="560" style="left:1090px;top:560px">
+  <div class="wp rv up s06-w s06-w4" data-x="1090" data-y="560" style="left:1090px;top:560px">
     <span class="dm"></span>
     <span class="lab"><span class="n">STAGE 04 <em>// TACTICAL ROLE</em></span><span class="t">B&amp;R Manager</span><span class="d">APEX LEGENDS &bull; AUG 2022</span><span class="x">Transitioned to management in Apex Legends Build &amp; Release team.</span><span class="chip mag">Tactical role</span></span>
   </div>
@@ -841,9 +827,8 @@
 
   <div class="panel gold s06-mba rv" id="s06-mba">
     <span class="hatch"></span>
-    <span class="lab"><span class="led gold"></span>NEW ACHIEVEMENT</span>
     <span class="tt">MBA</span>
-    <span class="m">// UNLOCKED</span>
+    <span class="txt"><span class="lab"><span class="led gold"></span>NEW ACHIEVEMENT</span><span class="m">// UNLOCKED &middot; 2020</span></span>
   </div>
 
   <style>
@@ -858,11 +843,15 @@
     #s06 .wp .lab .chip{display:inline-flex;margin-top:10px;font-size:13px;letter-spacing:.24em;padding:5px 10px 4px}
     #s06 .pathsvg .flight.orange{stroke-width:3}
     #s06 .pathsvg .s06-drop{stroke:var(--gold);stroke-width:2;stroke-dasharray:none;filter:drop-shadow(0 0 6px rgba(212,162,78,.7));opacity:0}
-    #s06 .s06-mba{left:1520px;top:560px;width:304px;height:130px;padding:20px 26px 0 30px;display:flex;flex-direction:column;background:rgba(14,12,8,.86)}
-    #s06 .s06-mba .lab{font-family:var(--mono);font-size:14px;letter-spacing:.3em;color:var(--gold);display:flex;align-items:center;gap:10px}
+    /* the MBA banner sits right on top of the STAGE 04 card (Julie: right after stage 4, class of 2020); the gold connector climbs from that waypoint */
+    #s06 .wp.up.s06-w4 .lab{bottom:14px}      /* the STAGE 04 card drops 10px so the MBA banner stacks on it with a clean gap */
+    #s06 .wp.up.s06-last .lab{bottom:44px}    /* the summit card lifts clear of the banner */
+    #s06 .s06-mba{left:1114px;top:298px;width:360px;height:62px;padding:0 18px 0 20px;display:flex;align-items:center;gap:16px;background:rgba(14,12,8,.9)}
+    #s06 .s06-mba .txt{display:flex;flex-direction:column;gap:4px}
+    #s06 .s06-mba .lab{font-family:var(--mono);font-size:12px;letter-spacing:.26em;color:var(--gold);display:flex;align-items:center;gap:9px;white-space:nowrap}
     #s06 .s06-mba .led.gold{background:var(--gold);box-shadow:0 0 10px var(--gold)}
-    #s06 .s06-mba .tt{margin-top:6px;font-family:var(--mast);font-size:58px;line-height:1;color:var(--ink);text-shadow:0 0 22px rgba(212,162,78,.45)}
-    #s06 .s06-mba .m{margin-top:6px;font-family:var(--disp);font-weight:600;font-size:14px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+    #s06 .s06-mba .tt{font-family:var(--mast);font-size:38px;line-height:1;color:var(--ink);text-shadow:0 0 22px rgba(212,162,78,.45)}
+    #s06 .s06-mba .m{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
   </style>
   <script>
   DECK.register('s06', {
@@ -891,10 +880,11 @@
         tl.fromTo(w.querySelector('.dm'),{opacity:0,scale:0},{opacity:1,scale:1,duration:.45,ease:'back.out(3)',transformOrigin:'50% 50%'},t)
           .fromTo(w.querySelector('.lab'),{opacity:0,y:10},{opacity:1,y:0,duration:.5,ease:'power3.out'},t+.12)
           .call(function(){ no.textContent='STAGE '+String(i+1).padStart(2,'0')+' / 06'; },null,t); });
-      var tEnd=T0+D;
-      DECK.drawPath(tl,s.querySelector('#s06-drop'),tEnd+.1,.4,'power2.inOut');
-      tl.fromTo(q('.s06-mba'),{opacity:0,scale:1.35,x:24},{opacity:1,scale:1,x:0,duration:.45,ease:'power4.in',transformOrigin:'50% 0'},tEnd+.35)
-        .fromTo(q('.s06-mba'),{x:8},{x:0,duration:.35,ease:'elastic.out(1,.4)'},tEnd+.8);
+      /* the MBA unlocks right after STAGE 04's card lands: the gold connector climbs off the waypoint, the banner snaps in on top of the card */
+      var t4=T0+D*geo.frac[3]-.05+.62;
+      DECK.drawPath(tl,s.querySelector('#s06-drop'),t4,.35,'power2.inOut');
+      tl.fromTo(q('.s06-mba'),{opacity:0,scale:1.3,y:14},{opacity:1,scale:1,y:0,duration:.45,ease:'power4.in',transformOrigin:'0 100%'},t4+.25)
+        .fromTo(q('.s06-mba'),{x:8},{x:0,duration:.35,ease:'elastic.out(1,.4)'},t4+.7);
     },
     leave: function(s, G){ if(this._tl){ this._tl.kill(); this._tl=null; } }
   });
@@ -922,7 +912,7 @@
     <span class="hatch"></span>
     <span class="lab"><span class="led" style="background:var(--gold);box-shadow:0 0 10px var(--gold)"></span>// 93RD ACADEMY AWARDS &middot; APRIL 2021</span>
     <div class="tt">The first Oscar won by a <em>video game company</em></div>
-    <div class="tx">Awarded to <b>Respawn Entertainment</b> and <b>Oculus Studios</b> &mdash; <i>Colette</i>, Best Documentary Short Subject.</div>
+    <div class="tx">Awarded to <b>Respawn Entertainment</b> and <b>Oculus Studios</b> for <i>Colette</i>, Best Documentary Short Subject.</div>
   </div>
 
   <div class="feed s07-feed">
@@ -1041,7 +1031,7 @@
       <span class="hb tl"></span><span class="hb tr"></span><span class="hb bl"></span><span class="hb br"></span>
       <div class="wm-line"><span class="wm">Apex&nbsp;</span><span class="wm" id="s08-word">Legends</span></div>
     </div>
-    <p class="lede rv">Respawn's <b>free-to-play hero shooter</b>. Squads of Legends drop into the arena, the ring closes, one squad walks out. Launched in <span class="or">February 2019</span> and live ever since &mdash; a new season every few months, with new Legends, maps and modes, on <span class="tl">every major platform</span>.</p>
+    <p class="lede rv">Respawn's <b>free-to-play hero shooter</b>. Squads of Legends drop into the arena, the ring closes, one squad walks out. Launched in <span class="or">February 2019</span> and live ever since. A new season every few months brings new Legends, maps and modes to <span class="tl">every major platform</span>.</p>
     <div class="s08-chips rv">
       <span class="chip">S30 &ldquo;Marked&rdquo; &middot; live now</span>
       <span class="chip dark">Free to play &middot; Feb 2019</span>
@@ -1134,104 +1124,6 @@
   </script>
 </section>
 
-<!-- beat 10 | ch 2 | in: drop | Build & Release: the pipeline as connected dots, no numbers anywhere -->
-<section class="beat" id="s10" data-in="drop" data-ch="2" data-name="B&amp;R" data-hdg="270"
-         data-notes="Julie to add real Build &amp; Release facts here; nothing on this beat is a statistic. The rigor of a live-service build team, qualitatively: builds every day, automated and QV test passes, first-party certification, shipping to every platform at the same moment, live ops and hotfixes. Animation: the pipeline draws BUILD → TEST → CERT → RELEASE → LIVE as connected pings, then the HOTFIX loop arcs back to BUILD; platform chips land last.">
-  <div class="bg" style="background-image:url('../assets/steam/ss_01.jpg');background-position:50% 30%"></div>
-  <div class="scrim full"></div>
-  <div class="topo"></div>
-  <div class="scrim vert"></div>
-
-  <div class="col s10-col">
-    <div class="eyebrow rv"><span class="ln"></span><span>// Build &amp; Release · Apex Legends</span><span class="no">PIPELINE // LIVE</span></div>
-    <div class="head hud" id="s10-head">
-      <span class="hb tl"></span><span class="hb tr"></span><span class="hb bl"></span><span class="hb br"></span>
-      <div class="wm-line"><span class="wm">Every platform.</span></div>
-      <div class="wm-line outline"><span class="wm">Same moment.</span></div>
-    </div>
-    <p class="lede rv">What Build &amp; Release does between a change in the code and the moment it goes live &mdash; on <b>every platform, at the same time</b>.</p>
-  </div>
-
-  <div class="s10-rig rv">
-    <span class="lab"><span class="led teal"></span>// THE RIGOR</span>
-    <span class="tx">Nothing ships until every gate is green.</span>
-  </div>
-
-  <svg class="pathsvg" viewBox="0 0 1920 1080" aria-hidden="true">
-    <path class="flight orange solid" id="s10-line" d="M 250 600 H 1650"/>
-    <path class="flight solid s10-loop" id="s10-loop" d="M 1650 600 C 1650 830, 250 830, 250 600"/>
-    <polygon class="s10-arrow" id="s10-arrow" points="906,772 922,763 922,781"/>
-  </svg>
-
-  <div class="wp rv s10-w" style="left:250px;top:600px"><span class="dm"></span><span class="lab"><span class="n">01</span><span class="t">Build</span><span class="x">Builds every day, for every platform.</span></span></div>
-  <div class="wp rv s10-w" style="left:600px;top:600px"><span class="dm"></span><span class="lab"><span class="n">02</span><span class="t">Test</span><span class="x">Automated and QV test passes.</span></span></div>
-  <div class="wp rv s10-w" style="left:950px;top:600px"><span class="dm"></span><span class="lab"><span class="n">03</span><span class="t">Cert</span><span class="x">First-party certification on every platform.</span></span></div>
-  <div class="wp rv s10-w" style="left:1300px;top:600px"><span class="dm"></span><span class="lab"><span class="n">04</span><span class="t">Release</span><span class="x">Ships to every platform at the same moment.</span></span></div>
-  <div class="wp rv s10-w s10-live" style="left:1650px;top:600px"><span class="rip"></span><span class="dm"></span><span class="lab"><span class="n">05 <em>// LIVE</em></span><span class="t">Live</span><span class="x">Live ops, monitoring and hotfixes.</span></span></div>
-  <div class="wp rv teal s10-hot" style="left:950px;top:772px"><span class="dm"></span><span class="lab"><span class="n">LOOP // BACK TO BUILD</span><span class="t">Hotfix loop</span><span class="x">A hotfix goes back through the same gates.</span></span></div>
-
-  <div class="s10-plat rv" id="s10-plat">
-    <span class="k">SHIPS ON</span>
-    <span class="chip dark">PC</span><span class="chip dark">PlayStation</span><span class="chip dark">Xbox</span><span class="chip dark">Nintendo Switch</span>
-    <span class="m">// SAME BUILD &middot; SAME MOMENT</span>
-  </div>
-
-  <style>
-    #s10 .s10-col{width:1000px}
-    #s10 .s10-col .head .wm-line span{font-size:96px}
-    #s10 .s10-col .lede{max-width:760px;font-size:22px;margin-top:20px}
-    #s10 .s10-rig{position:absolute;right:96px;top:170px;width:560px;display:flex;flex-direction:column;gap:12px;align-items:flex-end;text-align:right}
-    #s10 .s10-rig .lab{font-family:var(--mono);font-size:14px;letter-spacing:.3em;color:var(--teal);display:flex;align-items:center;gap:10px}
-    #s10 .s10-rig .tx{font-family:var(--disp);font-weight:300;font-size:30px;letter-spacing:.06em;color:#cfd1d5;line-height:1.2}
-    #s10 .wp .lab > span{display:block}
-    #s10 .wp .lab{left:-150px;top:26px;width:300px;min-width:0;text-align:center;padding:12px 14px 12px}
-    #s10 .wp .lab .n{font-size:13px}
-    #s10 .wp .lab .n em{font-style:normal;color:var(--orange)}
-    #s10 .wp .lab .t{font-size:24px;letter-spacing:.16em}
-    #s10 .wp .lab .x{font-size:16px;max-width:none}
-    #s10 .s10-hot .lab{border-color:rgba(79,182,201,.45);width:400px;left:-200px;top:22px}
-    #s10 .pathsvg .flight.orange{stroke-width:3}
-    #s10 .pathsvg .s10-loop{stroke:var(--teal);stroke-width:2;filter:drop-shadow(0 0 6px rgba(79,182,201,.7))}
-    #s10 .pathsvg .s10-arrow{fill:var(--teal);filter:drop-shadow(0 0 6px rgba(79,182,201,.8));opacity:0;transform-box:fill-box;transform-origin:center}
-    #s10 .s10-plat{position:absolute;left:96px;top:912px;display:flex;align-items:center;gap:12px}
-    #s10 .s10-plat .k{font-family:var(--mono);font-size:14px;letter-spacing:.3em;color:var(--teal);margin-right:8px}
-    #s10 .s10-plat .chip{font-size:14px;letter-spacing:.24em}
-    #s10 .s10-plat .m{margin-left:10px;font-family:var(--mono);font-size:14px;letter-spacing:.2em;color:var(--muted)}
-  </style>
-  <script>
-  DECK.register('s10', {
-    _tl:null,
-    settle: function(s, G){
-      DECK.pathFinal(s.querySelector('#s10-line')); DECK.pathFinal(s.querySelector('#s10-loop'));
-      G.set(s.querySelector('#s10-arrow'),{opacity:1,scale:1});
-    },
-    enter: function(s, G, tl){
-      var q=G.utils.selector(s); this._tl=tl;
-      G.set(q('.pathsvg path, .pathsvg polygon'),{opacity:0});
-      tl.fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
-        .fromTo(q('.wm'),{yPercent:115},{yPercent:0,duration:.9,ease:'expo.out',stagger:.12},.55);
-      DECK.snapHB(tl,s.querySelector('#s10-head'),1.2);
-      tl.fromTo(q('.lede'),{opacity:0,y:18},{opacity:1,y:0,duration:.6,ease:'power3.out'},1.3)
-        .fromTo(q('.s10-rig'),{opacity:0,x:30},{opacity:1,x:0,duration:.5,ease:'power3.out'},1.0);
-      /* the pipeline: one line draws BUILD → LIVE, each gate pops as the line reaches it */
-      var T0=1.6, D=2.4, ws=q('.s10-w');
-      DECK.drawPath(tl,s.querySelector('#s10-line'),T0,D,'none');
-      ws.forEach(function(w,i){ var t=T0+D*i/4-.03;
-        tl.fromTo(w.querySelector('.dm'),{opacity:0,scale:0},{opacity:1,scale:1,duration:.45,ease:'back.out(3)',transformOrigin:'50% 50%'},t)
-          .fromTo(w.querySelector('.lab'),{opacity:0,y:10},{opacity:1,y:0,duration:.5,ease:'power3.out'},t+.1); });
-      /* the hotfix loop arcs back to BUILD */
-      var tL=T0+D+.3;
-      DECK.drawPath(tl,s.querySelector('#s10-loop'),tL,1.3,'power2.inOut');
-      tl.fromTo(q('.s10-hot .dm'),{opacity:0,scale:0},{opacity:1,scale:1,duration:.45,ease:'back.out(3)',transformOrigin:'50% 50%'},tL+.6)
-        .fromTo(q('.s10-hot .lab'),{opacity:0,y:10},{opacity:1,y:0,duration:.5,ease:'power3.out'},tL+.7)
-        .fromTo(q('#s10-arrow'),{opacity:0,scale:0},{opacity:1,scale:1,duration:.4,ease:'back.out(3)'},tL+1.25)
-        .fromTo(q('.s10-plat'),{opacity:0,y:14},{opacity:1,y:0,duration:.5,ease:'power3.out'},tL+1.4);
-    },
-    leave: function(s, G){ if(this._tl){ this._tl.kill(); this._tl=null; } }
-  });
-  </script>
-</section>
-
 <!-- beat 11 | ch 2 | in: banner "Season 30" | this is what ships: the Marked gameplay trailer, T-03 → GO, then the pivot line -->
 <section class="beat" id="s11" data-in="banner" data-ch="2" data-name="TRAILER" data-hdg="315" data-banner="Season 30" data-banner-sub="S30 // MARKED" data-banner-sub2="GAMEPLAY TRAILER · STEAM STORE"
          data-notes="C's beat 4. Season 30 'Marked' gameplay trailer full-bleed (Steam store, 60 s silent loop); the T-03 → GO countdown clears, then the pivot line: 'So how does a Finance and Information Systems grad end up shipping this?' → NEXT: THE FRAMEWORK. Animation: jumpmaster countdown with the three ticks linking up into GO, then the panel lands bottom-left over the running trailer.">
@@ -1313,12 +1205,9 @@
   </script>
 </section>
 
-<!-- beat 12 | ch 3 | in: ring | session scope: the NOT column lands (✕), one line draws across, the IS column drops in hot (✓) -->
+<!-- beat 12 | ch 3 | in: ring | plain black (Julie's review) | session scope: the NOT column lands (✕), one line draws across, the IS column drops in hot (✓) -->
 <section class="beat" id="s12" data-in="ring" data-ch="3" data-name="SCOPE" data-hdg="150" data-callout="Ring closing" data-callout-sub="// THE FRAMEWORK"
          data-notes="Her slides 6 + 7. NOT a generic pep talk, not 'shoot your shot', not 'don't be afraid to apply' — valid, but not practical, actionable tools. IS: you're far closer to 100% qualified than you think; a practical framework to map real experience to aspirational JDs; articulating your value with clarity and confidence. Animation: the NOT column lands, a line draws to the IS column, which drops in hot.">
-  <div class="bg" style="background-image:url('../assets/steam/ss_01.jpg');background-position:50% 35%"></div>
-  <div class="scrim full"></div>
-  <div class="scrim vert"></div>
   <div class="col s12-col">
     <div class="eyebrow rv"><span class="ln"></span><span>// Chapter 03 · The framework</span><span class="no">RULES OF ENGAGEMENT</span></div>
     <div class="head hud" id="s12-head">
@@ -1346,7 +1235,7 @@
       <div class="li yes rv"><i class="fl"></i><span class="pip">&#x2713;</span><span class="tx">A <b>practical framework</b> to map real experience to aspirational job descriptions.</span></div>
       <div class="li yes rv"><i class="fl"></i><span class="pip">&#x2713;</span><span class="tx">Empowering you to <b>articulate your value</b> with clarity and confidence.</span></div>
     </div>
-    <div class="s12-chip rv"><span class="chip teal">Practical &middot; Actionable</span><span class="mono">// TOOLS, NOT PLATITUDES</span></div>
+    <div class="s12-chip rv"><span class="chip teal">Practical &middot; Actionable</span></div>
   </div>
 
   <style>
@@ -1367,8 +1256,7 @@
     #s12 .li .tx{font-size:23px}
     #s12 .li .fl{position:absolute;inset:0;background:rgba(79,182,201,.55);opacity:0;pointer-events:none}
     #s12 .s12-fn{margin-top:20px;padding-left:4px;max-width:720px;font-family:var(--body);font-style:italic;font-size:21px;line-height:1.4;color:var(--muted)}
-    #s12 .s12-chip{margin-top:22px;display:flex;align-items:center;gap:16px;transform-origin:0 50%}
-    #s12 .s12-chip .mono{font-size:13px}
+    #s12 .s12-chip{margin-top:22px;display:flex;align-items:center;transform-origin:0 50%}
     #s12 .ping{white-space:normal}
     #s12 .ping .rip{position:absolute;left:-14px;top:-14px;width:44px;height:44px;border:2px solid var(--teal);border-radius:50%;opacity:0;pointer-events:none}
     #s12 .ping.lit .rip{animation:rip 2.4s ease-out infinite}
@@ -1389,8 +1277,7 @@
     enter: function(s, G, tl){
       var q=G.utils.selector(s), pa=s.querySelector('#s12-pa'), pb=s.querySelector('#s12-pb'), p=this._geom(s);
       pa.classList.remove('on'); pb.classList.remove('on'); pb.classList.remove('lit'); G.set(q('.fl'),{opacity:0});
-      tl.fromTo(q('.bg'),{scale:1.08},{scale:1,duration:2.6,ease:'power2.out'},0)
-        .fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
+      tl.fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
         .fromTo(q('.wm'),{yPercent:115},{yPercent:0,duration:.9,ease:'expo.out'},.55);
       DECK.snapHB(tl,s.querySelector('#s12-head'),1.05);
       /* the NOT column lands first, flat and matter-of-fact */
@@ -1472,12 +1359,9 @@
   </script>
 </section>
 
-<!-- beat 14 | ch 3 | in: drop | what "connecting your dots" means: two panels (the myth · your responsibility), one drawn line between them -->
-<section class="beat" id="s14" data-in="drop" data-ch="3" data-name="MEANING" data-hdg="200" data-callout="Definition" data-callout-sub="// TWO DOTS · ONE LINE"
-         data-notes="Her slides 10 + 11. The Job Description Myth: job descriptions are aspirational wishlists — you are likely far more qualified than a word-for-word comparison suggests. Your Responsibility: it falls on you to translate your real experience into what recruiters and hiring managers are seeking. Animation: two panels land, one line draws from the myth's dot to yours — two dots, one line.">
-  <div class="bg" style="background-image:url('../assets/steam/ss_04.jpg');background-position:50% 40%"></div>
-  <div class="scrim full"></div>
-  <div class="scrim vert"></div>
+<!-- beat 14 | ch 3 | in: drop | plain black (Julie's review) | what "connecting your dots" means: two panels (the myth · your responsibility), one drawn line between them -->
+<section class="beat" id="s14" data-in="drop" data-ch="3" data-name="MEANING" data-hdg="200" data-callout="Definition" data-callout-sub="// THE JOB DESCRIPTION MYTH"
+         data-notes="Her slides 10 + 11. The Job Description Myth: job descriptions are aspirational wishlists — you are likely far more qualified than a word-for-word comparison suggests. Your Responsibility: it falls on you to translate your real experience into what recruiters and hiring managers are seeking. Animation: two panels land, one line draws from the myth's dot to yours.">
   <div class="col s14-col">
     <div class="eyebrow rv"><span class="ln"></span><span>// Chapter 03 · The framework</span><span class="no">DEFINITION</span></div>
     <div class="head hud" id="s14-head">
@@ -1503,7 +1387,6 @@
       <p class="tx">It falls on <b>you</b> to translate your real experience into what recruiters and hiring managers are seeking.</p>
     </div>
   </div>
-  <div class="s14-strap rv"><span class="ln"></span><span>// TWO DOTS &middot; ONE LINE</span><span class="ln"></span></div>
 
   <style>
     #s14 .s14-col{width:1640px}
@@ -1521,9 +1404,6 @@
     #s14 .s14-card .tx{margin-top:18px;font-family:var(--body);font-size:26px;line-height:1.45;color:#cfd1d5}
     #s14 .s14-card .tx b{color:var(--ink)}
     #s14 .s14-card .fl{position:absolute;inset:0;background:rgba(79,182,201,.4);opacity:0;pointer-events:none}
-    #s14 .s14-strap{position:absolute;left:0;right:0;top:818px;display:flex;align-items:center;justify-content:center;gap:22px;font-family:var(--mono);font-size:15px;letter-spacing:.34em;color:var(--teal)}
-    #s14 .s14-strap .ln{width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--teal))}
-    #s14 .s14-strap .ln:last-child{background:linear-gradient(270deg,transparent,var(--teal))}
     #s14 .ping .rip{position:absolute;left:-14px;top:-14px;width:44px;height:44px;border:2px solid var(--teal);border-radius:50%;opacity:0;pointer-events:none}
     #s14 .ping.lit .rip{animation:rip 2.4s ease-out infinite}
   </style>
@@ -1542,8 +1422,7 @@
     enter: function(s, G, tl){
       var q=G.utils.selector(s), pa=s.querySelector('#s14-pa'), pb=s.querySelector('#s14-pb'), p=this._geom(s);
       pa.classList.remove('on'); pb.classList.remove('on'); pb.classList.remove('lit'); G.set(q('.fl'),{opacity:0});
-      tl.fromTo(q('.bg'),{scale:1.08},{scale:1,duration:2.6,ease:'power2.out'},0)
-        .fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
+      tl.fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
         .fromTo(q('.wm'),{yPercent:115},{yPercent:0,duration:.9,ease:'expo.out',stagger:.12},.55);
       DECK.snapHB(tl,s.querySelector('#s14-head'),1.2);
       tl.fromTo(q('#s14-c1'),{opacity:0,x:-40},{opacity:1,x:0,duration:.6,ease:'power3.out'},1.25)
@@ -1552,22 +1431,18 @@
       DECK.drawPath(tl,p,2.0,.55,'power2.inOut'); G.set(p,{opacity:0});
       tl.call(function(){ pb.classList.add('on'); pb.classList.add('lit'); },null,2.55)
         .fromTo(pb,{scale:2.2},{scale:1,duration:.45,ease:'back.out(3)',immediateRender:false},2.55)
-        .fromTo(q('#s14-c2 .fl'),{opacity:.8},{opacity:0,duration:.6,ease:'power2.out',immediateRender:false},2.55)
-        .fromTo(q('.s14-strap'),{opacity:0,y:8},{opacity:1,y:0,duration:.5,ease:'power2.out'},2.95);
+        .fromTo(q('#s14-c2 .fl'),{opacity:.8},{opacity:0,duration:.6,ease:'power2.out',immediateRender:false},2.55);
     },
     leave: function(s, G){ s.querySelector('#s14-pb').classList.remove('lit'); }
   });
   </script>
 </section>
 
-<!-- beat 15 | ch 4 | in: ring | the scenario: QV Lead → Game Producer, four JD asks tagged MISSING?, rows unlinked (beat 16 draws the lines) -->
+<!-- beat 15 | ch 4 | in: ring | plain black (Julie's review) | the scenario: QV Lead → Game Producer, four JD asks tagged MISSING?, rows unlinked (beat 16 draws the lines) -->
 <section class="beat" id="s15" data-in="ring" data-ch="4" data-name="SCENARIO" data-hdg="240" data-callout="Ring closing" data-callout-sub="// A RELATABLE WALKTHROUGH"
          data-notes="Her slide 12. Target role: Game Producer. Four on-paper JD asks, each reading MISSING? beside a QV Lead's actual experience. Candidate thought: 'I've only ever worked in Quality Verification. I'm not a Producer.' Are these disconnected? Not once you connect the dots! Animation: rows land unlinked, the MISSING? tags flicker red, pings stay dark — the next beat draws the lines.">
-  <div class="bg" style="background-image:url('../assets/steam/ss_02.jpg');background-position:50% 30%"></div>
-  <div class="scrim full"></div>
-  <div class="scrim vert"></div>
   <div class="col s15-col">
-    <div class="eyebrow rv"><span class="ln"></span><span>// A relatable walkthrough · QV Lead → Game Producer</span><span class="no">STEP 01 / 02</span></div>
+    <div class="eyebrow rv"><span class="ln"></span><span>// A relatable walkthrough · QV Lead → Game Producer</span></div>
     <div class="head hud" id="s15-head">
       <span class="hb tl"></span><span class="hb tr"></span><span class="hb bl"></span><span class="hb br"></span>
       <div class="wm-line"><span class="wm">The scenario</span></div>
@@ -1638,8 +1513,7 @@
     enter: function(s, G, tl){
       var q=G.utils.selector(s), ghost=this._ghost(s);
       G.set(ghost,{opacity:0});
-      tl.fromTo(q('.bg'),{scale:1.06},{scale:1,duration:2.6,ease:'power2.out'},0)
-        .fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
+      tl.fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
         .fromTo(q('.wm'),{yPercent:115},{yPercent:0,duration:.9,ease:'expo.out'},.55);
       DECK.snapHB(tl,s.querySelector('#s15-head'),1.05);
       tl.fromTo(q('.dl-head'),{opacity:0,y:10},{opacity:1,y:0,duration:.45,ease:'power3.out'},.9)
@@ -1656,14 +1530,11 @@
   </script>
 </section>
 
-<!-- beat 16 | ch 4 | in: drop | the vocabulary shift: JD asks ↔ QV translation, dots linked, 100% RELEVANT -->
-<section class="beat" id="s16" data-in="drop" data-ch="4" data-name="VOCAB SHIFT" data-hdg="262" data-callout="Connecting" data-callout-sub="// JD ↔ EXPERIENCE"
-         data-notes="Her slides 13 + 14. The four Producer asks are the same four QV Lead facts in different vocabulary. Lines draw from each JD ping to its translation, MISSING? flips to CONNECTED, and the 100% RELEVANT stamp lands. Takeaway: you didn't fabricate experience — you reframed real skill and real execution into Production language.">
-  <div class="bg" style="background-image:url('../assets/steam/ss_02.jpg');background-position:50% 30%"></div>
-  <div class="scrim full"></div>
-  <div class="scrim vert"></div>
+<!-- beat 16 | ch 4 | in: drop | plain black (Julie's review) | the vocabulary shift: JD asks ↔ QV translation, dots linked; 100% RELEVANT lands after 30 s or on the next press -->
+<section class="beat" id="s16" data-in="drop" data-ch="4" data-name="VOCAB SHIFT" data-hdg="262" data-stamp-delay="30" data-callout="Connecting" data-callout-sub="// JD ↔ EXPERIENCE"
+         data-notes="Her slides 13 + 14. The four Producer asks are the same four QV Lead facts in different vocabulary. Lines draw from each JD ping to its translation, MISSING? flips to CONNECTED. The 100% RELEVANT stamp lands 30 s later (data-stamp-delay), or on the next press; the press after that advances. Takeaway: you didn't fabricate experience — you reframed real skill and real execution into Production language.">
   <div class="col s16-col">
-    <div class="eyebrow rv"><span class="ln"></span><span>// A relatable walkthrough · QV Lead → Game Producer</span><span class="no">STEP 02 / 02</span></div>
+    <div class="eyebrow rv"><span class="ln"></span><span>// A relatable walkthrough · QV Lead → Game Producer</span></div>
     <div class="head hud" id="s16-head">
       <span class="hb tl"></span><span class="hb tr"></span><span class="hb bl"></span><span class="hb br"></span>
       <div class="wm-line"><span class="wm">The vocabulary shift</span></div>
@@ -1698,14 +1569,14 @@
   <div class="panel teal s16-take rv" id="s16-take">
     <span class="hatch"></span>
     <span class="lab"><span class="led teal"></span>THE KEY TAKEAWAY</span>
-    <p>You didn't fabricate experience &mdash; you <b>reframed real skill and real execution</b> into Production language.</p>
+    <p>You didn't fabricate experience. You <b>reframed real skill and real execution</b> into Production language.</p>
   </div>
 
   <style>
     #s16 .s16-col{width:1100px}
     #s16 .s16-col .head .wm-line span{font-size:88px}
     #s16 .s16-dl{top:352px}
-    #s16 .s16-stamp{right:150px;top:236px}
+    #s16 .s16-stamp{right:150px;top:196px}   /* clear of the (now taller) teal column heads */
     #s16 .s16-take{left:96px;bottom:118px;width:1200px;height:118px;padding:0 40px 0 44px;display:flex;align-items:center;gap:30px}
     #s16 .s16-take .lab{font-family:var(--mono);font-size:13px;letter-spacing:.3em;color:var(--teal);display:flex;align-items:center;gap:10px;white-space:nowrap}
     #s16 .s16-take p{font-family:var(--body);font-size:24px;line-height:1.4;color:#cfd1d5}
@@ -1713,32 +1584,35 @@
   </style>
   <script>
   DECK.register('s16', {
-    settle: function(s, G){ DECK.dotLinkFinal(s.querySelector('#s16-dl'),{stamp:'#s16-stamp'}); },
+    _st:null,
+    settle: function(s, G){ if(this._st){ this._st.kill(); this._st=null; } DECK.dotLinkFinal(s.querySelector('#s16-dl'),{stamp:'#s16-stamp'}); },
     enter: function(s, G, tl){
       var q=G.utils.selector(s), dl=s.querySelector('#s16-dl');
+      if(this._st){ this._st.kill(); this._st=null; }
       DECK.dotLinkReset(dl);
       tl.fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
         .fromTo(q('.wm'),{yPercent:115},{yPercent:0,duration:.9,ease:'expo.out'},.55);
       DECK.snapHB(tl,s.querySelector('#s16-head'),1.1);
       /* measure + build the links BEFORE the row entrance tween is created (fromTo pre-renders its start values) */
-      var link=DECK.dotLink(dl,{stagger:.6,drawDur:.55,stamp:s.querySelector('#s16-stamp')});
+      var link=DECK.dotLink(dl,{stagger:.6,drawDur:.55});   /* no stamp here: it lands later (below) */
       tl.fromTo(q('.dl-head'),{opacity:0,y:10},{opacity:1,y:0,duration:.45,ease:'power3.out'},.9)
         .fromTo(q('.dl-row'),{opacity:0,y:26},{opacity:1,y:0,duration:.55,ease:'power3.out',stagger:.12},1.0);
       tl.add(link.tl,1.9);
       tl.fromTo(q('.s16-take'),{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:'power3.out'},1.9+link.end+.6);
-    }
+      /* Julie: the 100% RELEVANT stamp waits (data-stamp-delay seconds after the links finish) so she can talk over the rows; a press lands it early */
+      this._st=DECK.stampLater(s.querySelector('#s16-stamp'),dl,1.9+link.end+ +(s.dataset.stampDelay||30));
+    },
+    next: function(s, G){ return !!(this._st&&this._st.land()); },
+    leave: function(s, G){ if(this._st){ this._st.kill(); this._st=null; } }
   });
   </script>
 </section>
 
-<!-- beat 17 | ch 5 | in: ring | case study 01, Solutions Architect: the wishlist × her initial assessment; experience column locked -->
+<!-- beat 17 | ch 5 | in: ring | case study 01, Solutions Architect: the wishlist × her initial assessment; experience column locked (plain black, no photo) -->
 <section class="beat" id="s17" data-in="ring" data-ch="5" data-name="CASE 01" data-hdg="290" data-callout="Ring closing" data-callout-sub="// CASE STUDIES"
          data-notes="Her slide 15 + note: 'Does this kind of tie into the cliché I said this WASN'T about at the start of this, yes. That is always an absolute. BUT in this case, we can reframe the wishlist and connect the dots. We can connect our actual experience to what this is asking for.' Animation: five verdict tags slam in one by one while the experience column stays locked.">
-  <div class="bg" style="background-image:url('../assets/steam/ss_05.jpg');background-position:50% 30%"></div>
-  <div class="scrim full"></div>
-  <div class="scrim vert"></div>
   <div class="col s17-col">
-    <div class="eyebrow rv"><span class="ln"></span><span>// Case study 01 · Solutions Architect</span><span class="no">CASE 01 / 02</span></div>
+    <div class="eyebrow rv"><span class="ln"></span><span>// Case study 01 · Solutions Architect</span></div>
     <div class="head hud" id="s17-head">
       <span class="hb tl"></span><span class="hb tr"></span><span class="hb bl"></span><span class="hb br"></span>
       <div class="wm-line"><span class="wm">Job description vs. reality</span></div>
@@ -1825,8 +1699,7 @@
     enter: function(s, G, tl){
       var q=G.utils.selector(s), self=this, ghost=this._ghost(s), P=0, F=0;
       G.set(ghost,{opacity:0}); q('.dl-a .ping').forEach(function(p){ p.classList.remove('on'); }); this._tally(s,0,0);
-      tl.fromTo(q('.bg'),{scale:1.06},{scale:1,duration:2.6,ease:'power2.out'},0)
-        .fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
+      tl.fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
         .fromTo(q('.wm'),{yPercent:115},{yPercent:0,duration:.9,ease:'expo.out'},.55);
       DECK.snapHB(tl,s.querySelector('#s17-head'),1.05);
       tl.fromTo(q('.dl-head'),{opacity:0,y:10},{opacity:1,y:0,duration:.45,ease:'power3.out'},.9)
@@ -1844,12 +1717,9 @@
   </script>
 </section>
 
-<!-- beat 18 | ch 5 | in: banner REFRAME | case study 01 reframed: her relevant experience per row, every tag flips to PASS, 5 / 5 stamp -->
-<section class="beat" id="s18" data-in="banner" data-banner="Reframe" data-banner-sub="// CONNECT THE DOTS" data-banner-sub2="CASE STUDY 01 · SOLUTIONS ARCHITECT" data-ch="5" data-name="REFRAMED" data-hdg="300"
-         data-notes="Her slide 16, verbatim: USAA features from scratch; USAA.com as a live service (on-call, SLAs); studying for the Cloud Practitioner cert; USAA API governance board + Slack; self-taught Java. Every tag flips to PASS; 5 / 5 stamp lands. CHECK: row 2 reads 'Automation &amp; CI/CD pipeline setup' on slide 15 but 'Live Service experience…' on slide 16; this beat uses slide 16. Animation: lines draw, tags flip, stamp.">
-  <div class="bg" style="background-image:url('../assets/steam/ss_05.jpg');background-position:50% 30%"></div>
-  <div class="scrim full"></div>
-  <div class="scrim vert"></div>
+<!-- beat 18 | ch 5 | in: banner REFRAME | case study 01 reframed: her relevant experience per row, every tag flips to PASS; the 5 / 5 stamp lands after 30 s or on the next press (plain black, no photo) -->
+<section class="beat" id="s18" data-in="banner" data-banner="Reframe" data-banner-sub="// CONNECT THE DOTS" data-banner-sub2="CASE STUDY 01 · SOLUTIONS ARCHITECT" data-ch="5" data-name="REFRAMED" data-hdg="300" data-stamp-delay="30"
+         data-notes="Her slide 16, verbatim: USAA features from scratch; USAA.com as a live service (on-call, SLAs); studying for the Cloud Practitioner cert; USAA API governance board + Slack; self-taught Java. Every tag flips to PASS; the 5 / 5 PASS stamp lands 30 s after the links finish (data-stamp-delay), or on the next press, whichever comes first; the press after that advances. CHECK: row 2 reads 'Automation &amp; CI/CD pipeline setup' on slide 15 but 'Live Service experience…' on slide 16; this beat uses slide 16. Animation: lines draw, tags flip; the stamp waits.">
   <div class="col s18-col">
     <div class="eyebrow rv"><span class="ln"></span><span>// Case study 01 · Solutions Architect</span><span class="no">REFRAMED</span></div>
     <div class="head hud" id="s18-head">
@@ -1891,7 +1761,7 @@
   <div class="panel teal s18-take rv" id="s18-take">
     <span class="hatch"></span>
     <span class="lab"><span class="led teal"></span>CASE 01 // VERDICT</span>
-    <p>Same wishlist. Same candidate. <b>Five real dots, five lines drawn</b> &mdash; 1 Pass / 4 Fails was never the story.</p>
+    <p>Same wishlist. Same candidate. <b>Five real dots, five lines drawn.</b> 1 Pass / 4 Fails was never the story.</p>
   </div>
 
   <style>
@@ -1906,32 +1776,35 @@
   </style>
   <script>
   DECK.register('s18', {
+    _st: null,
     settle: function(s, G){ DECK.dotLinkFinal(s.querySelector('#s18-dl'),{stamp:'#s18-stamp'}); },
     enter: function(s, G, tl){
       var q=G.utils.selector(s), dl=s.querySelector('#s18-dl');
       DECK.dotLinkReset(dl);
-      tl.fromTo(q('.bg'),{scale:1.04},{scale:1,duration:2.6,ease:'power2.out'},0)
-        .fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
+      tl.fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
         .fromTo(q('.wm'),{yPercent:115},{yPercent:0,duration:.9,ease:'expo.out'},.55);
       DECK.snapHB(tl,s.querySelector('#s18-head'),1.05);
       /* measure + build the links while the rows are still at rest (the row fromTo below pre-renders y:26) */
-      var link=DECK.dotLink(dl,{stagger:.5,drawDur:.5,stamp:s.querySelector('#s18-stamp')});
+      var link=DECK.dotLink(dl,{stagger:.5,drawDur:.5});   /* no stamp here: it lands later (see stampLater below) */
       G.set(q('.dl-b .ping, .tag'),{scale:1});   /* dotLink's pop tweens pre-render 1.8x / 1.35x; they re-apply their own from-state when they play */
       tl.add(link.tl,1.9);
+      /* Julie: the 5 / 5 PASS stamp waits while she talks over the rows; 30 s after the links, or on her next press */
+      if(this._st) this._st.kill();
+      this._st=DECK.stampLater(s.querySelector('#s18-stamp'),dl,1.9+link.end+ +(s.dataset.stampDelay||30));
       tl.fromTo(q('.dl-head'),{opacity:0,y:10},{opacity:1,y:0,duration:.45,ease:'power3.out'},.9)
         .fromTo(q('.dl-row'),{opacity:0,y:26},{opacity:1,y:0,duration:.55,ease:'power3.out',stagger:.1},1.0);
       tl.fromTo(q('.s18-take'),{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:'power3.out'},1.9+link.end+.6);
-    }
+    },
+    /* a press while the stamp is pending lands it now and is consumed; the next press advances */
+    next: function(s, G){ return !!(this._st&&this._st.land()); },
+    leave: function(s, G){ if(this._st){ this._st.kill(); this._st=null; } }
   });
   </script>
 </section>
 
-<!-- beat 19 | ch 5 | in: drop | case study 01, how: three architectural strengths light in sequence and their lines run into THE RESULT -->
+<!-- beat 19 | ch 5 | in: drop | case study 01, how: three architectural strengths light in sequence and their lines run into THE RESULT (plain black, no photo) -->
 <section class="beat" id="s19" data-in="drop" data-ch="5" data-name="HOW" data-hdg="305" data-callout="Dots connected" data-callout-sub="// CASE STUDY 01 · APPLICATION"
          data-notes="Her slide 17. Instead of getting deterred by missing specific keyword requirements, the story focused on foundational architectural strengths: Systems Thinking, Business Translation, Adaptability. The result: joined Electronic Arts on March 3rd, 2020; first project: architecting site-access applications for essential employees during COVID-19. Animation: the three strengths light in sequence and their lines run down into THE RESULT.">
-  <div class="bg" style="background-image:url('../assets/steam/ss_06.jpg');background-position:50% 20%"></div>
-  <div class="scrim full"></div>
-  <div class="scrim vert"></div>
   <div class="col s19-col">
     <div class="eyebrow rv"><span class="ln"></span><span>// Case study 01 · Application</span><span class="no">HOW THE DOTS WERE CONNECTED</span></div>
     <div class="head hud" id="s19-head">
@@ -1998,8 +1871,7 @@
     enter: function(s, G, tl){
       var q=G.utils.selector(s), pr=s.querySelector('#s19-pr'), paths=this._geom(s);
       q('.ping').forEach(function(p){ p.classList.remove('on'); }); pr.classList.remove('lit'); G.set(q('.fl'),{opacity:0});
-      tl.fromTo(q('.bg'),{scale:1.08},{scale:1,duration:2.6,ease:'power2.out'},0)
-        .fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
+      tl.fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
         .fromTo(q('.wm'),{yPercent:115},{yPercent:0,duration:.9,ease:'expo.out'},.55);
       DECK.snapHB(tl,s.querySelector('#s19-head'),1.05);
       tl.fromTo(q('.lede'),{opacity:0,y:18},{opacity:1,y:0,duration:.6,ease:'power3.out'},1.15)
@@ -2019,19 +1891,16 @@
   </script>
 </section>
 
-<!-- beat 20 | ch 5 | in: drop | case study 02: the Manager — Apex Build & Release JD — five REQ cards drop in loadout-style, pings still unlinked -->
+<!-- beat 20 | ch 5 | in: drop | case study 02: the Apex Build & Release Manager JD, five REQ cards drop in loadout-style, pings still dim (plain black, no photo) -->
 <section class="beat" id="s20" data-in="drop" data-ch="5" data-name="THE JD" data-hdg="320"
-         data-notes="Her slide 18. The formal Job Description for Manager — Build &amp; Release asked for five core qualifications on paper: game dev &amp; B&amp;R experience, direct reports, financial planning, people development, roadmap strategy. Five REQ cards drop in loadout-style; each carries a dim, unlinked ping — the dots that still need connecting.">
-  <div class="bg" style="background-image:url('../assets/apex/s29.jpg');background-position:70% 45%"></div>
-  <div class="scrim full"></div>
-  <div class="scrim vert"></div>
+         data-notes="Her slide 18. The formal Job Description for the Apex Build &amp; Release Manager role asked for five core qualifications on paper: game dev &amp; B&amp;R experience, direct reports, financial planning, people development, roadmap strategy. Five REQ cards drop in loadout-style; each carries a dim ping: the dots that still need connecting.">
   <div class="lobbyhatch"></div>
 
   <div class="col s20-col">
-    <div class="eyebrow rv"><span class="ln"></span><span>// Case study 02 &middot; Management role</span><span class="no">STEP 01 / 03</span></div>
+    <div class="eyebrow rv"><span class="ln"></span><span>// Case study 02 &middot; Management role</span></div>
     <div class="head hud" id="s20-head">
       <span class="hb tl"></span><span class="hb tr"></span><span class="hb bl"></span><span class="hb br"></span>
-      <div class="wm-line"><span class="wm">Manager &mdash; Apex Build &amp; Release</span></div>
+      <div class="wm-line"><span class="wm">Apex Build &amp; Release Manager</span></div>
     </div>
     <div class="sub s20-sub rv"><span class="stripe"></span><span>the <b>job description</b></span></div>
     <p class="lede s20-lede rv">The formal job description asked for <b>five core qualifications</b> on paper:</p>
@@ -2039,11 +1908,11 @@
 
   <div class="s20-intel rv"><span class="mono">INTEL // REQUIRED LOADOUT</span><span class="cnt" id="s20-cnt"><i class="led"></i>LINKS // 0 / 5</span></div>
   <div class="cards s20-cards" id="s20-cards">
-    <div class="card rv"><span class="ping"><i></i></span><span class="idx">REQ 01</span><div class="tt">Game Dev &amp; B&amp;R</div><p class="tx">Years of experience on a game dev team, ideally Build &amp; Release.</p><div class="foot">// Unlinked</div></div>
-    <div class="card rv"><span class="ping"><i></i></span><span class="idx">REQ 02</span><div class="tt">Direct Reports</div><p class="tx">Experience as a formal manager with 1 or more direct reports.</p><div class="foot">// Unlinked</div></div>
-    <div class="card rv"><span class="ping"><i></i></span><span class="idx">REQ 03</span><div class="tt">Financial Planning</div><p class="tx">Experience in team financial planning and budget forecasting.</p><div class="foot">// Unlinked</div></div>
-    <div class="card rv"><span class="ping"><i></i></span><span class="idx">REQ 04</span><div class="tt">People Development</div><p class="tx">Creating development plans &amp; goals for people to manage success.</p><div class="foot">// Unlinked</div></div>
-    <div class="card rv"><span class="ping"><i></i></span><span class="idx">REQ 05</span><div class="tt">Roadmap Strategy</div><p class="tx">Experience with developing and managing your team&rsquo;s roadmap.</p><div class="foot">// Unlinked</div></div>
+    <div class="card rv"><span class="ping"><i></i></span><span class="idx">REQ 01</span><div class="tt">Game Dev &amp; B&amp;R</div><p class="tx">Years of experience on a game dev team, ideally Build &amp; Release.</p></div>
+    <div class="card rv"><span class="ping"><i></i></span><span class="idx">REQ 02</span><div class="tt">Direct Reports</div><p class="tx">Experience as a formal manager with 1 or more direct reports.</p></div>
+    <div class="card rv"><span class="ping"><i></i></span><span class="idx">REQ 03</span><div class="tt">Financial Planning</div><p class="tx">Experience in team financial planning and budget forecasting.</p></div>
+    <div class="card rv"><span class="ping"><i></i></span><span class="idx">REQ 04</span><div class="tt">People Development</div><p class="tx">Creating development plans &amp; goals for people to manage success.</p></div>
+    <div class="card rv"><span class="ping"><i></i></span><span class="idx">REQ 05</span><div class="tt">Roadmap Strategy</div><p class="tx">Experience with developing and managing your team&rsquo;s roadmap.</p></div>
   </div>
 
   <style>
@@ -2056,7 +1925,7 @@
     #s20 .s20-intel .cnt{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:14px;letter-spacing:.24em;color:var(--muted);border:1px solid rgba(236,234,230,.16);padding:6px 12px 5px;clip-path:var(--chamfer-sm)}
     #s20 .s20-intel .cnt .led{background:var(--muted);box-shadow:none;width:7px;height:7px}
     #s20 .s20-cards{top:496px}
-    #s20 .card{display:flex;flex-direction:column;min-height:316px;padding:28px 24px 26px 30px}
+    #s20 .card{display:flex;flex-direction:column;min-height:262px;padding:28px 24px 26px 30px}   /* no footer line any more (Julie: no 'unlinked') */
     #s20 .card .ping{position:absolute;right:22px;top:24px}
     #s20 .card .idx{font-size:14px}
     #s20 .card .tt{font-size:27px;letter-spacing:.05em;margin-top:12px;padding-right:24px}
@@ -2071,8 +1940,7 @@
     },
     enter: function(s, G, tl){
       var q=G.utils.selector(s);
-      tl.fromTo(q('.bg'),{scale:1.06},{scale:1,duration:2.4,ease:'power2.out'},0)
-        .fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
+      tl.fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
         .fromTo(q('.wm'),{yPercent:115},{yPercent:0,duration:.9,ease:'expo.out'},.55);
       DECK.snapHB(tl,s.querySelector('#s20-head'),1.05);
       tl.fromTo(q('.s20-sub'),{opacity:0,x:-20},{opacity:1,x:0,duration:.5,ease:'power3.out'},.95)
@@ -2089,29 +1957,26 @@
   </script>
 </section>
 
-<!-- beat 21 | ch 5 | in: drop | case study 02: her actual experience — five messages arrive on the squad comms channel, in her words -->
+<!-- beat 21 | ch 5 | in: drop | case study 02: her actual experience, five lines in her own words, each confirmed in turn (plain black, no photo) -->
 <section class="beat" id="s21" data-in="drop" data-ch="5" data-name="EXPERIENCE" data-hdg="330"
-         data-notes="Her slide 19, her words verbatim. Five messages arrive on the squad comms channel one at a time: 2.5 years with game teams, 5+ years overseeing engineers, a finance degree plus MBA, growing people without the HR title, weighing in on the roadmap. Each one lights a ping and a line threads down through them — the loadout side of the link.">
-  <div class="bg" style="background-image:url('../assets/steam/ss_06.jpg');background-position:50% 30%"></div>
-  <div class="scrim full"></div>
-  <div class="scrim vert"></div>
+         data-notes="Her slide 19, her words verbatim. Five lines land one at a time, each flipping PENDING to CONFIRMED: 2.5 years with game teams, 5+ years overseeing engineers, a finance degree plus MBA, growing people without the HR title, weighing in on the roadmap. Each one lights a ping and a line threads down through them — the loadout side of the link.">
 
   <div class="col s21-col">
-    <div class="eyebrow rv"><span class="ln"></span><span>// Unlocking qualifications</span><span class="no">STEP 02 / 03</span></div>
+    <div class="eyebrow rv"><span class="ln"></span><span>// Unlocking qualifications</span></div>
     <div class="head hud" id="s21-head">
       <span class="hb tl"></span><span class="hb tr"></span><span class="hb bl"></span><span class="hb br"></span>
       <div class="wm-line"><span class="wm">My actual experience</span></div>
     </div>
   </div>
 
-  <div class="s21-ch rv"><span class="led teal"></span><span class="mono">COMMS // SQUAD CHANNEL &middot; JULIE BANTA</span><span class="cnt" id="s21-cnt">RECEIVED // 0 / 5</span></div>
+  <div class="s21-ch rv"><span class="led teal"></span><span class="mono">JULIE BANTA // IN HER OWN WORDS</span><span class="cnt" id="s21-cnt">CONFIRMED // 0 / 5</span></div>
   <div class="quotes s21-q" id="s21-q">
     <svg class="s21-thread" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path id="s21-path" d="M0 0"/></svg>
-    <div class="q rv"><span class="ping teal"><i></i></span><span class="idx">// 01</span><span class="tx">&ldquo;I have spent the past 2.5 years working with game teams to enable their success here at EA.&rdquo;</span><span class="rx">Incoming</span></div>
-    <div class="q rv"><span class="ping teal"><i></i></span><span class="idx">// 02</span><span class="tx">&ldquo;I have over 5 years of experience overseeing the quality of work and delivery of several engineers.&rdquo;</span><span class="rx">Incoming</span></div>
-    <div class="q rv"><span class="ping teal"><i></i></span><span class="idx">// 03</span><span class="tx">&ldquo;I have an undergraduate degree in finance with an MBA.&rdquo;</span><span class="rx">Incoming</span></div>
-    <div class="q rv"><span class="ping teal"><i></i></span><span class="idx">// 04</span><span class="tx">&ldquo;Just because I didn&rsquo;t oversee my engineers from an HR perspective, doesn&rsquo;t mean I didn&rsquo;t work to grow them.&rdquo;</span><span class="rx">Incoming</span></div>
-    <div class="q rv"><span class="ping teal"><i></i></span><span class="idx">// 05</span><span class="tx">&ldquo;I worked with my leaders to weigh in on our roadmap based on feedback from our customers, and balancing our teams&rsquo; capacity.&rdquo;</span><span class="rx">Incoming</span></div>
+    <div class="q rv"><span class="ping teal"><i></i></span><span class="idx">// 01</span><span class="tx">&ldquo;I have spent the past 2.5 years working with game teams to enable their success here at EA.&rdquo;</span><span class="rx">Pending</span></div>
+    <div class="q rv"><span class="ping teal"><i></i></span><span class="idx">// 02</span><span class="tx">&ldquo;I have over 5 years of experience overseeing the quality of work and delivery of several engineers.&rdquo;</span><span class="rx">Pending</span></div>
+    <div class="q rv"><span class="ping teal"><i></i></span><span class="idx">// 03</span><span class="tx">&ldquo;I have an undergraduate degree in finance with an MBA.&rdquo;</span><span class="rx">Pending</span></div>
+    <div class="q rv"><span class="ping teal"><i></i></span><span class="idx">// 04</span><span class="tx">&ldquo;Just because I didn&rsquo;t oversee my engineers from an HR perspective, doesn&rsquo;t mean I didn&rsquo;t work to grow them.&rdquo;</span><span class="rx">Pending</span></div>
+    <div class="q rv"><span class="ping teal"><i></i></span><span class="idx">// 05</span><span class="tx">&ldquo;I worked with my leaders to weigh in on our roadmap based on feedback from our customers, and balancing our teams&rsquo; capacity.&rdquo;</span><span class="rx">Pending</span></div>
   </div>
 
   <style>
@@ -2145,25 +2010,24 @@
     },
     settle: function(s, G){
       var path=this._layout(s); DECK.pathFinal(path);
-      s.querySelectorAll('.q').forEach(function(r){ var p=r.querySelector('.ping'), rx=r.querySelector('.rx'); p.classList.add('on'); G.set(p,{scale:1}); rx.textContent='Received'; rx.classList.add('ok'); G.set(rx,{opacity:1}); });
-      s.querySelector('#s21-cnt').textContent='RECEIVED // 5 / 5';
+      s.querySelectorAll('.q').forEach(function(r){ var p=r.querySelector('.ping'), rx=r.querySelector('.rx'); p.classList.add('on'); G.set(p,{scale:1}); rx.textContent='Confirmed'; rx.classList.add('ok'); G.set(rx,{opacity:1}); });
+      s.querySelector('#s21-cnt').textContent='CONFIRMED // 5 / 5';
     },
     enter: function(s, G, tl){
       var q=G.utils.selector(s), rows=q('.q'), cnt=s.querySelector('#s21-cnt');
-      rows.forEach(function(r){ r.querySelector('.ping').classList.remove('on'); var rx=r.querySelector('.rx'); rx.textContent='Incoming'; rx.classList.remove('ok'); });
-      cnt.textContent='RECEIVED // 0 / 5';
+      rows.forEach(function(r){ r.querySelector('.ping').classList.remove('on'); var rx=r.querySelector('.rx'); rx.textContent='Pending'; rx.classList.remove('ok'); });
+      cnt.textContent='CONFIRMED // 0 / 5';
       var path=this._layout(s);
-      tl.fromTo(q('.bg'),{scale:1.06},{scale:1,duration:2.4,ease:'power2.out'},0)
-        .fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
+      tl.fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
         .fromTo(q('.wm'),{yPercent:115},{yPercent:0,duration:.9,ease:'expo.out'},.55);
       DECK.snapHB(tl,s.querySelector('#s21-head'),1.05);
       tl.fromTo(q('.s21-ch'),{opacity:0,y:10},{opacity:1,y:0,duration:.45,ease:'power3.out'},.95);
-      /* incoming messages: each row slides in, INCOMING flickers, then flips to RECEIVED and lights its ping */
+      /* her five lines: each row slides in, PENDING flickers, then flips to CONFIRMED and lights its ping */
       var t0=1.15, st=.55;
       rows.forEach(function(r,i){ var ti=t0+i*st, rx=r.querySelector('.rx'), ping=r.querySelector('.ping');
         tl.fromTo(r,{opacity:0,x:-70},{opacity:1,x:0,duration:.5,ease:'power3.out'},ti)
           .fromTo(rx,{opacity:1},{opacity:.15,duration:.06},ti+.15).to(rx,{opacity:1,duration:.06},ti+.21).to(rx,{opacity:.15,duration:.06},ti+.27).to(rx,{opacity:1,duration:.06},ti+.33)
-          .call(function(){ rx.textContent='Received'; rx.classList.add('ok'); ping.classList.add('on'); cnt.textContent='RECEIVED // '+(i+1)+' / 5'; },null,ti+.42)
+          .call(function(){ rx.textContent='Confirmed'; rx.classList.add('ok'); ping.classList.add('on'); cnt.textContent='CONFIRMED // '+(i+1)+' / 5'; },null,ti+.42)
           .fromTo(ping,{scale:1.9},{scale:1,duration:.4,ease:'back.out(3)',immediateRender:false},ti+.42);
       });
       DECK.drawPath(tl,path,t0+.45,(rows.length-1)*st,'none');
@@ -2172,15 +2036,12 @@
   </script>
 </section>
 
-<!-- beat 22 | ch 5 | in: drop | case study 02: the dots connected — five JD pings link to five experience lines, REQ → MET, READY stamp, THE RESULT -->
-<section class="beat" id="s22" data-in="drop" data-ch="5" data-name="CONNECTED" data-hdg="340"
-         data-notes="Her slides 20 + 21. The same five requirements, now mapped: each JD ping links to the matching line of her experience, REQ 01–05 flip to MET, the READY stamp lands, and THE RESULT drops in — full readiness for the Build &amp; Release Management role, via Empowered Leadership · Strategic Alignment · Roadmap Ownership.">
-  <div class="bg" style="background-image:url('../assets/steam/ss_01.jpg');background-position:50% 35%"></div>
-  <div class="scrim full"></div>
-  <div class="scrim vert"></div>
+<!-- beat 22 | ch 5 | in: drop | case study 02: the dots connected — five JD pings link to five experience lines, REQ → MET, THE RESULT; the READY stamp lands after 30 s or on the next press (plain black, no photo) -->
+<section class="beat" id="s22" data-in="drop" data-ch="5" data-name="CONNECTED" data-hdg="340" data-stamp-delay="30"
+         data-notes="Her slides 20 + 21. The same five requirements, now mapped: each JD ping links to the matching line of her experience, REQ 01–05 flip to MET, THE RESULT drops in, and the READY stamp lands 30 s after the links (data-stamp-delay) or on the next press, whichever comes first; the press after that advances — full readiness for the Build &amp; Release Management role, via Empowered Leadership · Strategic Alignment · Roadmap Ownership.">
 
   <div class="col s22-col">
-    <div class="eyebrow rv"><span class="ln"></span><span>// Case study 02 &middot; Visual alignment</span><span class="no">STEP 03 / 03</span></div>
+    <div class="eyebrow rv"><span class="ln"></span><span>// Case study 02 &middot; Visual alignment</span></div>
     <div class="head hud" id="s22-head">
       <span class="hb tl"></span><span class="hb tr"></span><span class="hb bl"></span><span class="hb br"></span>
       <div class="wm-line"><span class="wm">Mapping JD to experience</span></div>
@@ -2207,7 +2068,7 @@
     <div class="dl-row rv">
       <div class="dl-a"><span class="ping"><i></i></span><span class="k">People Goals &amp; Growth</span></div>
       <div class="dl-mid"><span class="tag miss" data-to="Met" data-to-class="pass">REQ 04</span></div>
-      <div class="dl-b"><span class="ping teal"><i></i></span><span class="tx">Not from an HR perspective &mdash; but <b>I worked to grow them</b></span></div>
+      <div class="dl-b"><span class="ping teal"><i></i></span><span class="tx">Not from an HR perspective, but <b>I worked to grow them</b></span></div>
     </div>
     <div class="dl-row rv">
       <div class="dl-a"><span class="ping"><i></i></span><span class="k">Developing Team Roadmap</span></div>
@@ -2249,6 +2110,7 @@
   </style>
   <script>
   DECK.register('s22', {
+    _st: null,
     settle: function(s, G){ DECK.dotLinkFinal(s.querySelector('#s22-dl'),{stamp:'#s22-stamp'}); },
     enter: function(s, G, tl){
       var q=G.utils.selector(s), dl=s.querySelector('#s22-dl');
@@ -2256,17 +2118,22 @@
       /* measure + build the links first, while every row still sits at its final position — and with the beat's
          transition scale normalised (the drop transition holds the incoming beat at scale 1.15 while enter() runs) */
       var k=+G.getProperty(s,'scale')||1; if(k!==1) G.set(s,{scale:1});
-      var link=DECK.dotLink(dl,{stagger:.5,drawDur:.5,stamp:s.querySelector('#s22-stamp')});
+      var link=DECK.dotLink(dl,{stagger:.5,drawDur:.5});   /* no stamp here: it lands later (see stampLater below) */
       if(k!==1) G.set(s,{scale:k});
-      tl.fromTo(q('.bg'),{scale:1.06},{scale:1,duration:2.4,ease:'power2.out'},0)
-        .fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
+      tl.fromTo(q('.eyebrow'),{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power3.out'},.45)
         .fromTo(q('.wm'),{yPercent:115},{yPercent:0,duration:.9,ease:'expo.out'},.55);
       DECK.snapHB(tl,s.querySelector('#s22-head'),1.05);
       tl.fromTo(q('.dl-head'),{opacity:0,y:10},{opacity:1,y:0,duration:.45,ease:'power3.out'},.9)
         .fromTo(q('.dl-row'),{opacity:0,y:26},{opacity:1,y:0,duration:.5,ease:'power3.out',stagger:.1},1.0);
       tl.add(link.tl,1.8);
+      /* Julie: the READY stamp waits while she talks over the rows; 30 s after the links, or on her next press */
+      if(this._st) this._st.kill();
+      this._st=DECK.stampLater(s.querySelector('#s22-stamp'),dl,1.8+link.end+ +(s.dataset.stampDelay||30));
       tl.fromTo(q('.s22-res'),{opacity:0,y:34},{opacity:1,y:0,duration:.6,ease:'power3.out'},1.8+link.end+.5);
-    }
+    },
+    /* a press while the stamp is pending lands it now and is consumed; the next press advances */
+    next: function(s, G){ return !!(this._st&&this._st.land()); },
+    leave: function(s, G){ if(this._st){ this._st.kill(); this._st=null; } }
   });
   </script>
 </section>
@@ -2381,9 +2248,9 @@
   </script>
 </section>
 
-<!-- beat 24 | ch 6 | in: banner CHAMPION | the close: trailer loop under scrims, "Go connect your dots." (YOUR DOTS assembles from dots), Julie's lower third, RING 22 · CLOSED -->
-<section class="beat" id="s24" data-in="banner" data-ch="6" data-name="CHAMPION" data-hdg="42" data-banner="Champion" data-banner-sub="Squad // Julie Banta" data-banner-sub2="BUILD &amp; RELEASE · RESPAWN · GHC 2026"
-         data-notes="The close. Season 30 'Marked' gameplay loops under the scrim. YOUR DOTS assembles from flying dots before the masthead lands — 'Go connect your dots.' Lower third: Julie Banta · Director, Build &amp; Release · Apex Legends · Respawn Entertainment. 'Come find me after — AMA about everything here' lands as a teal call-out under the lower third. Minimap: RING 22 · CLOSED. Hold here for Q&amp;A.">
+<!-- beat 24 | ch 6 | in: banner CHAMPION | the close: ~30 s of Season 30 gameplay under "Go connect your dots." + OPEN FOR Q&A, then the stage fades to black and the GHC outro (beat 25) rises out of it -->
+<section class="beat" id="s24" data-in="banner" data-ch="6" data-name="CHAMPION" data-banner="Champion" data-banner-sub="Squad // Julie Banta" data-banner-sub2="BUILD &amp; RELEASE · RESPAWN · GHC 2026" data-outro-at="30"
+         data-notes="The close. Season 30 'Marked' gameplay runs under the scrim. YOUR DOTS assembles from flying dots before the masthead lands — 'Go connect your dots.' Lower third: Julie Banta · Director, Build &amp; Release · Apex Legends · Respawn Entertainment. OPEN FOR Q&amp;A lands as the teal call-out. After 30 s (data-outro-at) the whole stage fades to black and the reverse GHC animation takes over — pressing NEXT does the same straight away. Minimap: RING 21 · CLOSED.">
   <video class="vid" muted playsinline loop preload="metadata" poster="../media/apex-marked-poster-1080.jpg" data-seek="24" disablepictureinpicture>
     <source src="../media/apex-marked-gameplay-1080-60s.mp4" type="video/mp4">
   </video>
@@ -2399,9 +2266,10 @@
       Go connect <em id="s24-em">your dots.</em>
     </div>
     <div class="lt rv"><span class="nm">Julie Banta</span><span class="sep"></span><span class="ro">Director, Build &amp; Release &middot; Apex Legends &middot; Respawn Entertainment</span></div>
-    <div class="s24-find rv"><span class="chip teal">Come find me after</span><span class="tx">AMA about everything here &nbsp;<b>// GRACE HOPPER CELEBRATION 2026</b></span></div>
+    <div class="s24-find rv"><span class="chip teal">Open for Q&amp;A</span><span class="tx">AMA about everything here &nbsp;<b>// GRACE HOPPER CELEBRATION 2026</b></span></div>
   </div>
   <div class="s24-host" id="s24-host"></div>
+  <div class="s24-black" aria-hidden="true"></div>
 
   <div class="s24-minimap rv">
     <svg viewBox="0 0 210 210" aria-hidden="true">
@@ -2413,7 +2281,7 @@
       <line x1="5" y1="105" x2="24" y2="105" stroke="rgba(236,234,230,.4)"/>
       <line x1="186" y1="105" x2="205" y2="105" stroke="rgba(236,234,230,.4)"/>
     </svg>
-    <div class="lab"><b>RING 22</b>CLOSED</div>
+    <div class="lab"><b>RING 21</b>CLOSED</div>
   </div>
 
   <style>
@@ -2437,15 +2305,30 @@
     @keyframes s24spin{to{transform:rotate(360deg)}}
     #s24 .s24-minimap .lab{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;font-family:var(--mono);font-size:14px;letter-spacing:.2em;color:var(--orange);line-height:1.5}
     #s24 .s24-minimap .lab b{display:block;font-family:var(--disp);font-weight:600;font-size:15px;letter-spacing:.3em;color:var(--ink)}
+    #s24 .s24-black{position:absolute;inset:0;background:#000;opacity:0;z-index:60;pointer-events:none}   /* the fade to black before the GHC outro */
     @media (prefers-reduced-motion:reduce){ #s24 .s24-minimap .spin{animation:none} }
   </style>
   <script>
   DECK.register('s24', {
-    _dt: null,
+    _dt: null, _out: null, _going: false,
+    _disarm: function(){ if(this._out){ this._out.kill(); this._out=null; } },
+    /* the hand-off: everything on the stage (this beat AND the chrome) fades to black, holds a beat, then the GHC outro rises out of it */
+    outro: function(s, G){
+      if(this._going) return true; this._going=true; this._disarm();
+      var i=DECK.beats.indexOf(s), blk=s.querySelector('.s24-black');
+      G.to(blk,{opacity:1,duration:1.8,ease:'power2.inOut'});
+      G.to(DECK.$$('.chrome, .tick, .dtrack'),{opacity:0,duration:1.0,ease:'power2.inOut'});
+      G.delayedCall(2.3,function(){ DECK.$('#stage').classList.add('raw'); DECK.go(i+2); });
+      return true;
+    },
     settle: function(s, G){
       if(this._dt){ this._dt.kill(); this._dt=null; }
+      this._disarm(); this._going=false; G.set(s.querySelector('.s24-black'),{opacity:0});
       G.set(s.querySelector('#s24-em'),{opacity:1});
     },
+    /* the timer starts once the beat is on screen (after runs both for a transition and a direct jump); 0 disables it */
+    after: function(s, G){ var self=this, at=+(s.dataset.outroAt||0); this._disarm(); if(at>0&&!this._going) this._out=G.delayedCall(at,function(){ self.outro(s,G); }); },
+    next: function(s, G){ return this.outro(s,G); },
     enter: function(s, G, tl){
       var q=G.utils.selector(s), em=s.querySelector('#s24-em'), host=s.querySelector('#s24-host');
       if(this._dt){ this._dt.kill(); this._dt=null; }
@@ -2460,7 +2343,39 @@
         .fromTo(q('.s24-find'),{opacity:0,y:12,scale:.96},{opacity:1,y:0,scale:1,duration:.55,ease:'back.out(1.6)',transformOrigin:'0 50%'},L+.7)
         .fromTo(q('.s24-minimap'),{opacity:0,scale:.8},{opacity:1,scale:1,duration:.55,ease:'back.out(1.8)'},L+.8);
     },
-    leave: function(s, G){ if(this._dt){ this._dt.kill(); this._dt=null; } }
+    leave: function(s, G){ this._disarm(); if(this._dt){ this._dt.kill(); this._dt=null; } }
+  });
+  </script>
+</section>
+
+<!-- beat 25 | ch 6 | in: fade | the outro: the GHC animation in reverse rises out of the black and lands on the official 2026 splash — hold here for Q&A -->
+<section class="beat" id="s25" data-in="fade" data-ch="6" data-name="OUTRO" data-chrome="off" data-raw="on" data-autoplay="off"
+         data-notes="The outro (Tristan's reverse cut of the GHC animation). After ~30 s of Season 30 gameplay on the Q&amp;A slide (or on the next press) the deck fades to black, then this clip rises out of the black, runs 10 s and lands on the official GHC 2026 splash. It holds there through Q&amp;A. Nothing more to press; LEFT goes back to the Q&amp;A slide.">
+  <video class="vid" id="s25-vid" muted playsinline preload="auto" poster="../media/outro-ghc-splash-poster.jpg" disablepictureinpicture>
+    <source src="../media/outro-ghc-splash.mp4" type="video/mp4">
+  </video>
+  <style>
+    #s25{background:#000}
+    #s25 .vid{object-fit:contain;background:#000}
+  </style>
+  <script>
+  DECK.register('s25', {
+    _endFn: null,
+    _unhook: function(v){ if(this._endFn){ v.removeEventListener('loadedmetadata',this._endFn); this._endFn=null; } },
+    /* settled (a direct jump here): sit on the landing frame — the splash */
+    settle: function(s, G){
+      var v=s.querySelector('#s25-vid'), self=this; this._unhook(v); try{ v.pause(); }catch(e){}
+      var end=function(){ self._endFn=null; try{ if(isFinite(v.duration)) v.currentTime=Math.max(0,v.duration-.04); }catch(e){} };
+      if(v.readyState>=1) end(); else { this._endFn=end; v.addEventListener('loadedmetadata',end,{once:true}); }
+    },
+    /* entrance (from the Q&A slide's fade to black): play from the top; the clip's first frames are near-black */
+    enter: function(s, G, tl){
+      var v=s.querySelector('#s25-vid'); this._unhook(v);
+      if(!v.querySelector('source')) return;                              /* no-video edition: the poster IS the splash */
+      try{ v.pause(); v.currentTime=0; }catch(e){}
+      tl.call(function(){ try{ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){} },null,.05);
+    },
+    leave: function(s, G){ var v=s.querySelector('#s25-vid'); this._unhook(v); try{ v.pause(); }catch(e){} }
   });
   </script>
 </section>
@@ -2484,11 +2399,6 @@
   <div class="tick tk-tl"></div><div class="tick tk-tr"></div><div class="tick tk-bl"></div><div class="tick tk-br"></div>
   <div class="chrome corner-mark"><span class="dot"></span>RESPAWN <span class="sub">// GHC 2026</span></div>
   <div class="chrome counter"><b id="ctrNow">01</b> / <span id="ctrTot">24</span><span class="tag2" id="ctrTag">OPEN</span></div>
-  <div class="chrome compass">
-    <div class="tape-win"><div class="tape" id="tape"></div></div>
-    <span class="needle"></span>
-    <span class="hdg" id="hdg">HDG 042</span>
-  </div>
   <div class="chrome footmono">CONNECT YOUR DOTS // <b id="beatName">—</b></div>
   <div class="chrome hint">&larr; / &rarr; &middot; SPACE &middot; N NOTES &middot; F FULL</div>
   <div class="dtrack" id="dtrack"></div>
@@ -2659,13 +2569,14 @@ window.DotsCore = (function () {
   /* =====================================================================
      HELPERS available to slides
      ===================================================================== */
+  function setAll(list,props){ if(list&&list.length) G.set(list,props); }   /* gsap.set([]) warns "target not found" — beats without .bg/.rv/.hb are normal now */
   var HBDIR={tl:[-34,-30],tr:[34,-30],bl:[-34,30],br:[34,30]};
   DECK.snapHB=function(tl,scope,t){
     if(!scope) return;
     $$('.hb',scope).forEach(function(h){ var k=h.classList.contains('tl')?'tl':h.classList.contains('tr')?'tr':h.classList.contains('bl')?'bl':'br';
       tl.fromTo(h,{opacity:0,x:HBDIR[k][0],y:HBDIR[k][1],scale:1.5},{opacity:1,x:0,y:0,scale:1,duration:.45,ease:'back.out(2.5)'},t); });
   };
-  DECK.setHBFinal=function(scope){ G.set($$('.hb',scope),{opacity:1,x:0,y:0,scale:1}); };
+  DECK.setHBFinal=function(scope){ setAll($$('.hb',scope),{opacity:1,x:0,y:0,scale:1}); };
 
   var countTweens=[];
   DECK.countUps=function(scope,delay){
@@ -2872,6 +2783,22 @@ window.DotsCore = (function () {
     var svg=$('svg.dl-lines',container); if(svg) svg.innerHTML='';
     var stamp=$('.stamp',container.closest('.beat')||container); if(stamp) G.set(stamp,{opacity:0});
   };
+  /* a stamp that lands LATER — `at` seconds from now (Julie talks over the rows first), or on demand via land().
+     Beats keep the handle: next(){ return !!(this._st&&this._st.land()); } lands it early and consumes the press;
+     leave(){ this._st.kill(); }. Pass the .dl container so the rows kick the way dotLink's own stamp does. */
+  DECK.stampLater=function(stamp,container,at){
+    stamp=typeof stamp==='string'?$(stamp):stamp; var h={pending:true,call:null,tl:null};
+    if(!stamp){ h.pending=false; h.land=function(){ return false; }; h.kill=function(){}; return h; }
+    G.set(stamp,{opacity:0});
+    h.land=function(){ if(!h.pending) return false; h.pending=false; if(h.call){ h.call.kill(); h.call=null; }
+      var tl=G.timeline(); h.tl=tl;
+      tl.fromTo(stamp,{opacity:0,scale:2.4,rotate:-14},{opacity:1,scale:1,rotate:-6,duration:.45,ease:'power4.in'},0);
+      if(container) tl.to(container,{x:6,duration:.05},.42).to(container,{x:-5,duration:.05},.47).to(container,{x:0,duration:.06},.52);
+      return true; };
+    h.kill=function(){ h.pending=false; if(h.call){ h.call.kill(); h.call=null; } if(h.tl){ h.tl.kill(); h.tl=null; } };
+    if(REDUCE){ h.land(); } else { h.call=G.delayedCall(Math.max(0,at||0),h.land); }
+    return h;
+  };
   DECK.dotLinkFinal=function(container,o){
     var r=DECK.dotLink(container,o||{}); r.tl.progress(1).kill();
     $$('.dl-row',container).forEach(function(row){ row.classList.add('linked'); $$('.ping',row).forEach(function(p){ p.classList.add('on'); }); var tag=$('.tag',row); if(tag) flipTag(tag,true); if(row._dlPath) DECK.pathFinal(row._dlPath); });
@@ -2935,14 +2862,7 @@ window.DotsCore = (function () {
   /* =====================================================================
      CHROME
      ===================================================================== */
-  var tape=$('#tape'), hdgEl=$('#hdg');
-  (function buildTape(){ if(!tape) return; var cards=['N','NE','E','SE','S','SW','W','NW'], html='';
-    for(var d=0; d<720; d+=45){ html+='<span class="card" style="left:'+(d*4)+'px">'+cards[(d/45)%8]+'</span>'; }
-    for(var d2=15; d2<720; d2+=15){ if(d2%45===0) continue; html+='<span style="left:'+(d2*4)+'px">'+String(d2%360).padStart(3,'0')+'</span>'; }
-    tape.innerHTML=html; })();
-  var hdg={v:42};
-  function setHdg(v){ hdg.v=v; if(!tape) return; tape.style.transform='translateX('+(-(v+360)*4)+'px)'; hdgEl.textContent='HDG '+String(Math.round(((v%360)+360)%360)).padStart(3,'0'); }
-  function whipHdg(to,dur){ if(REDUCE){ setHdg(to); return; } G.to(hdg,{v:to,duration:dur||.9,ease:'power3.inOut',onUpdate:function(){ setHdg(hdg.v); }}); }
+  /* (the in-game compass tape was retired in Julie's 2026-09 review; beats' data-hdg attributes are ignored) */
 
   var CHROME_ELS=[];
   var track=$('#dtrack'), trackBtns=[], trackProg=null, trackX=[];
@@ -2987,9 +2907,9 @@ window.DotsCore = (function () {
   function api(b){ return REG[b.id]||{}; }
   function finalBeat(i){
     var s=beats[i]; G.killTweensOf($$('*',s)); countTweens.forEach(function(t){ t.kill(); }); countTweens=[];
-    G.set($$('.rv',s),{opacity:1,x:0,y:0,scale:1,rotate:0,clearProps:'transform'});
-    G.set($$('.wm',s),{yPercent:0,opacity:1});
-    G.set($$('.bg',s),{scale:1});
+    setAll($$('.rv',s),{opacity:1,x:0,y:0,scale:1,rotate:0,clearProps:'transform'});
+    setAll($$('.wm',s),{yPercent:0,opacity:1});
+    setAll($$('.bg',s),{scale:1});
     DECK.setHBFinal(s); DECK.countFinal(s);
     $$('canvas.dots-cv',s).forEach(function(c){ c.remove(); });
     var a=api(s); if(a.settle) a.settle(s,G);
@@ -3083,7 +3003,7 @@ window.DotsCore = (function () {
      ===================================================================== */
   function show(i){
     leave(cur); beats.forEach(function(s,k){ G.set(s,{clearProps:'all'}); s.style.clipPath=''; s.classList.toggle('on',k===i); });
-    finalBeat(i); cur=i; DECK.cur=i; chrome(i,0); setHdg(+(beats[i].dataset.hdg||42));
+    finalBeat(i); cur=i; DECK.cur=i; chrome(i,0);
     var a=api(beats[i]); if(a.after) a.after(beats[i],G);
     if(beats[i].dataset.autoplay!=='off') $$('video',beats[i]).forEach(DECK.playVideo);
   }
@@ -3096,7 +3016,7 @@ window.DotsCore = (function () {
     inc.classList.add('on');
     var tl=G.timeline({onComplete:function(){ locked=false; out.classList.remove('on'); G.set(out,{clearProps:'all'}); out.style.clipPath=''; G.set(inc,{clearProps:'clip-path,z-index,visibility'}); }});
     var dur=TR[type](out,inc,tl);
-    cur=i; DECK.cur=i; chrome(i,dur); whipHdg(+(inc.dataset.hdg||42),dur);
+    cur=i; DECK.cur=i; chrome(i,dur);
     enter(i);
     var a=api(inc); if(a.after) G.delayedCall(dur,function(){ a.after(inc,G); });
     G.delayedCall(dur+.05,function(){ locked=false; });
@@ -3133,7 +3053,7 @@ window.DotsCore = (function () {
     buildTrack();
     var n=hashBeat();
     if(n){ show(n-1); G.delayedCall(.5,preload); return; }
-    var i=0; beats[0].classList.add('on'); cur=0; DECK.cur=0; chromeOn=null; chrome(0,0); setHdg(+(beats[0].dataset.hdg||42));
+    var i=0; beats[0].classList.add('on'); cur=0; DECK.cur=0; chromeOn=null; chrome(0,0);
     if(REDUCE){ finalBeat(0); return; }
     G.set(beats[0],{opacity:0}); G.to(beats[0],{opacity:1,duration:.9,ease:'power2.out'});
     enter(i); G.delayedCall(1.2,preload);
