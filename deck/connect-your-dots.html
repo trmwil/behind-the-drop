@@ -172,7 +172,7 @@
   .dl-head .m{flex:0 0 var(--dl-m,200px);text-align:center}
   .dl-head .b{flex:1}
   .dl-head .b.mid{color:var(--orange)}
-  .dl-row{position:relative;display:flex;align-items:stretch;gap:0;min-height:76px}
+  .dl-row{position:relative;display:flex;align-items:stretch;gap:0;min-height:76px;will-change:auto}   /* .rv's will-change:transform would make each row a stacking context and trap the tag (z 3) under the link svg (z 2) */
   .dl-a,.dl-b{position:relative;display:flex;align-items:center;gap:18px;padding:14px 22px 14px 22px;background:rgba(10,10,12,.80);border:1px solid rgba(236,234,230,.10);clip-path:var(--chamfer-sm)}
   .dl-a{flex:0 0 var(--dl-a,700px);border-left:3px solid rgba(236,234,230,.2)}
   .dl-b{flex:1;border-left:3px solid var(--teal)}
@@ -1286,7 +1286,7 @@
         .fromTo(q('.s12-fn'),{opacity:0,y:10},{opacity:1,y:0,duration:.5,ease:'power2.out'},1.95)
         /* the pivot: one line from the NOT ping across to the IS ping */
         .call(function(){ pa.classList.add('on'); },null,2.4);
-      DECK.drawPath(tl,p,2.45,.5,'power2.inOut'); G.set(p,{opacity:0});   /* drawPath pre-renders opacity:1 — a round-cap dot would show at the far end */
+      DECK.drawPath(tl,p,2.45,.5,'power2.inOut');   /* drawPath shows nothing until the draw starts */
       tl.call(function(){ pb.classList.add('on'); pb.classList.add('lit'); },null,2.95)
         .fromTo(pb,{scale:2.2},{scale:1,duration:.45,ease:'back.out(3)',immediateRender:false},2.95)
         /* the IS column drops in with more energy: scale, flash, pips spin in */
@@ -1879,7 +1879,7 @@
       [1,2,3].forEach(function(i){ var t=2.2+(i-1)*.4, pg=s.querySelector('#s19-p'+i);
         tl.call(function(){ pg.classList.add('on'); },null,t)
           .fromTo(pg,{scale:2},{scale:1,duration:.4,ease:'back.out(3)',immediateRender:false},t);
-        DECK.drawPath(tl,paths[i-1],t+.05,.6,'power2.inOut'); G.set(paths[i-1],{opacity:0}); });
+        DECK.drawPath(tl,paths[i-1],t+.05,.6,'power2.inOut'); });   /* drawPath shows nothing until the draw starts (no sliver to hide) */
       tl.call(function(){ pr.classList.add('on'); pr.classList.add('lit'); },null,3.65)
         .fromTo(pr,{scale:2.4},{scale:1,duration:.45,ease:'back.out(3)',immediateRender:false},3.65)
         .fromTo(q('.s19-result .fl'),{opacity:.85},{opacity:0,duration:.7,ease:'power2.out',immediateRender:false},3.65)
@@ -2587,10 +2587,12 @@ window.DotsCore = (function () {
   };
   /* draw an SVG path/line/circle on a timeline via dashoffset */
   DECK.drawPath=function(tl,el,t,dur,ease){
-    var L=el.getTotalLength?el.getTotalLength():1000;
-    /* start 4px past the length so a round cap never shows as a dot before the draw begins */
-    G.set(el,{strokeDasharray:L,strokeDashoffset:L+4,opacity:1});
-    tl.fromTo(el,{strokeDashoffset:L+4},{strokeDashoffset:0,duration:dur||1,ease:ease||'power2.inOut',immediateRender:false},t);
+    var L=el.getTotalLength?el.getTotalLength():1000, D=L+10;
+    /* dash = gap = L+10; offset L+15 puts the whole path inside the gap with 5 px to spare at both ends, so
+       neither a round cap nor a sliver of the next dash shows before the draw. The draw runs the offset to 10:
+       the dash head lands exactly on the path end. (pathFinal sets the plain L / 0 settled state.) */
+    G.set(el,{strokeDasharray:D,strokeDashoffset:L+15,opacity:1});
+    tl.fromTo(el,{strokeDashoffset:L+15},{strokeDashoffset:10,duration:dur||1,ease:ease||'power2.inOut',immediateRender:false},t);
     return L;
   };
   DECK.pathFinal=function(el){ var L=el.getTotalLength?el.getTotalLength():1000; G.set(el,{strokeDasharray:L,strokeDashoffset:0,opacity:1}); };
@@ -2743,9 +2745,11 @@ window.DotsCore = (function () {
       path.setAttribute('d','M'+a.cx+' '+a.cy+' C'+mx+' '+a.cy+','+mx+' '+b.cy+','+b.cx+' '+b.cy);
       if(o.color) path.style.stroke=o.color; svg.appendChild(path); row._dlPath=path;
       var ti=t+i*st;
-      tl.call(function(){ pa.classList.add('on'); },null,ti);
+      /* rows that animated in keep an inline transform → their own stacking context → the tag would sit under the
+         link. Drop it when the link starts and again when it lands (the row's own tween is over by then). */
+      tl.call(function(){ pa.classList.add('on'); G.set(row,{clearProps:'transform'}); },null,ti);
       DECK.drawPath(tl,path,ti+.05,dd,'power2.inOut');
-      tl.call(function(){ pb.classList.add('on'); row.classList.add('linked'); },null,ti+.05+dd);
+      tl.call(function(){ pb.classList.add('on'); row.classList.add('linked'); G.set(row,{clearProps:'transform'}); },null,ti+.05+dd);
       tl.fromTo(pb,{scale:1.8},{scale:1,duration:.4,ease:'back.out(3)',immediateRender:false},ti+.05+dd);
       if(tag){ tl.call(function(){ flipTag(tag,true); },null,ti+.05+dd*.8);
         tl.fromTo(tag,{scale:1.35},{scale:1,duration:.45,ease:'back.out(2.5)',immediateRender:false},ti+.05+dd*.8); }
@@ -2784,7 +2788,7 @@ window.DotsCore = (function () {
   };
   DECK.dotLinkFinal=function(container,o){
     var r=DECK.dotLink(container,o||{}); r.tl.progress(1).kill();
-    $$('.dl-row',container).forEach(function(row){ row.classList.add('linked'); $$('.ping',row).forEach(function(p){ p.classList.add('on'); }); var tag=$('.tag',row); if(tag) flipTag(tag,true); if(row._dlPath) DECK.pathFinal(row._dlPath); });
+    $$('.dl-row',container).forEach(function(row){ row.classList.add('linked'); G.set(row,{clearProps:'transform'}); $$('.ping',row).forEach(function(p){ p.classList.add('on'); }); var tag=$('.tag',row); if(tag) flipTag(tag,true); if(row._dlPath) DECK.pathFinal(row._dlPath); });
     var stamp=$('.stamp',container.closest('.beat')||container); if(stamp) G.set(stamp,{opacity:1,scale:1,rotate:-6});
   };
 
