@@ -828,7 +828,7 @@
   <div class="panel gold s06-mba rv" id="s06-mba">
     <span class="hatch"></span>
     <span class="tt">MBA</span>
-    <span class="txt"><span class="lab"><span class="led gold"></span>NEW ACHIEVEMENT</span><span class="m">// UNLOCKED &middot; 2020</span></span>
+    <span class="txt"><span class="lab"><span class="led gold"></span>NEW ACHIEVEMENT</span><span class="m">// UNLOCKED</span></span>
   </div>
 
   <style>
@@ -2248,16 +2248,20 @@
   </script>
 </section>
 
-<!-- beat 24 | ch 6 | in: banner CHAMPION | the close: ~30 s of Season 30 gameplay under "Go connect your dots." + OPEN FOR Q&A, then the stage fades to black and the GHC outro (beat 25) rises out of it -->
-<section class="beat" id="s24" data-in="banner" data-ch="6" data-name="CHAMPION" data-banner="Champion" data-banner-sub="Squad // Julie Banta" data-banner-sub2="BUILD &amp; RELEASE · RESPAWN · GHC 2026" data-outro-at="30"
-         data-notes="The close. Season 30 'Marked' gameplay runs under the scrim. YOUR DOTS assembles from flying dots before the masthead lands — 'Go connect your dots.' Lower third: Julie Banta · Director, Build &amp; Release · Apex Legends · Respawn Entertainment. OPEN FOR Q&amp;A lands as the teal call-out. After 30 s (data-outro-at) the whole stage fades to black and the reverse GHC animation takes over — pressing NEXT does the same straight away. Minimap: RING 21 · CLOSED.">
-  <video class="vid" muted playsinline loop preload="metadata" poster="../media/apex-marked-poster-1080.jpg" data-seek="24" disablepictureinpicture>
+<!-- beat 24 | ch 6 | in: banner CHAMPION | the close + Q&A on one screen: "Go connect your dots." + OPEN FOR Q&A over ~30 s of Season 30 gameplay, then the gameplay dissolves into the reverse GHC animation, which lands on the official splash and holds — the panel, lower third, minimap and chrome stay up -->
+<section class="beat" id="s24" data-in="banner" data-ch="6" data-name="CHAMPION" data-banner="Champion" data-banner-sub="Squad // Julie Banta" data-banner-sub2="BUILD &amp; RELEASE · RESPAWN · GHC 2026" data-autoplay="off" data-outro-at="30"
+         data-notes="The close and the Q&amp;A slide, on one screen. Season 30 'Marked' gameplay runs under the scrim. YOUR DOTS assembles from flying dots before the masthead lands — 'Go connect your dots.' Lower third: Julie Banta · Director, Build &amp; Release · Apex Legends · Respawn Entertainment. OPEN FOR Q&amp;A lands as the teal call-out. After 30 s (data-outro-at) the gameplay dissolves into the reverse GHC animation, which lands on the official 2026 splash and holds there for the whole Q&amp;A; the panel, lower third, call-out and minimap stay on screen. Pressing NEXT starts the dissolve straight away. Minimap: RING 21 · CLOSED.">
+  <video class="vid" id="s24-apex" muted playsinline loop preload="metadata" poster="../media/apex-marked-poster-1080.jpg" data-seek="24" disablepictureinpicture>
     <source src="../media/apex-marked-gameplay-1080-60s.mp4" type="video/mp4">
   </video>
-  <div class="scrim vert"></div>
-  <div class="scrim s24-l"></div>
+  <!-- the GHC animation in reverse sits over the gameplay at opacity 0 and dissolves in on the outro; no loop, so it rests on its last frame (the splash) -->
+  <video class="vid s24-ghc" id="s24-ghc" muted playsinline preload="auto" poster="../media/outro-ghc-splash-poster.jpg" disablepictureinpicture>
+    <source src="../media/outro-ghc-splash.mp4" type="video/mp4">
+  </video>
+  <div class="scrim vert s24-treat"></div>
+  <div class="scrim s24-l s24-treat"></div>
 
-  <div class="s24-live rv"><span class="led"></span>LIVE // APEX LEGENDS &middot; SEASON 30 &ldquo;MARKED&rdquo;</div>
+  <div class="s24-live s24-treat rv"><span class="led"></span>LIVE // APEX LEGENDS &middot; SEASON 30 &ldquo;MARKED&rdquo;</div>
 
   <div class="panel s24-close rv" id="s24-close">
     <span class="hatch"></span>
@@ -2269,7 +2273,6 @@
     <div class="s24-find rv"><span class="chip teal">Open for Q&amp;A</span><span class="tx">AMA about everything here &nbsp;<b>// GRACE HOPPER CELEBRATION 2026</b></span></div>
   </div>
   <div class="s24-host" id="s24-host"></div>
-  <div class="s24-black" aria-hidden="true"></div>
 
   <div class="s24-minimap rv">
     <svg viewBox="0 0 210 210" aria-hidden="true">
@@ -2288,7 +2291,7 @@
     #s24 .s24-l{background:linear-gradient(90deg,rgba(10,10,11,.62) 0%,rgba(10,10,11,.28) 36%,rgba(10,10,11,0) 62%)}
     #s24 .s24-live{position:absolute;left:96px;top:150px;display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:14px;letter-spacing:.24em;color:var(--ink)}
     #s24 .s24-host{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none}
-    #s24 .s24-close{left:96px;bottom:118px;width:1500px;height:300px;background:rgba(10,10,12,.9);padding:34px 40px 0 44px;display:flex;flex-direction:column}
+    #s24 .s24-close{left:96px;bottom:104px;width:1500px;height:300px;background:rgba(10,10,12,.9);padding:34px 40px 0 44px;display:flex;flex-direction:column}
     #s24 .s24-close .cta{align-self:flex-start;font-family:var(--mast);font-size:92px;line-height:.95;text-transform:uppercase;letter-spacing:.005em;text-shadow:0 12px 60px rgba(0,0,0,.65)}
     #s24 .s24-close .cta em{font-style:normal;color:var(--orange)}
     #s24 .s24-close .lt{margin-top:20px;display:flex;align-items:center;gap:18px}
@@ -2299,39 +2302,49 @@
     #s24 .s24-find .chip{font-size:32px;letter-spacing:.22em;padding:14px 28px 12px}
     #s24 .s24-find .tx{font-family:var(--disp);font-weight:400;font-size:23px;letter-spacing:.16em;text-transform:uppercase;color:#cfd1d5}
     #s24 .s24-find .tx b{font-family:var(--mono);font-weight:400;font-size:16px;letter-spacing:.2em;color:var(--teal)}
-    #s24 .s24-minimap{position:absolute;right:96px;bottom:118px;width:210px;height:210px}
+    #s24 .s24-minimap{position:absolute;right:96px;bottom:104px;width:210px;height:210px}
     #s24 .s24-minimap svg{width:100%;height:100%;overflow:visible}
     #s24 .s24-minimap .spin{transform-origin:105px 105px;animation:s24spin 14s linear infinite}
     @keyframes s24spin{to{transform:rotate(360deg)}}
     #s24 .s24-minimap .lab{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;font-family:var(--mono);font-size:14px;letter-spacing:.2em;color:var(--orange);line-height:1.5}
     #s24 .s24-minimap .lab b{display:block;font-family:var(--disp);font-weight:600;font-size:15px;letter-spacing:.3em;color:var(--ink)}
-    #s24 .s24-black{position:absolute;inset:0;background:#000;opacity:0;z-index:60;pointer-events:none}   /* the fade to black before the GHC outro */
+    #s24 .s24-ghc{opacity:0}
     @media (prefers-reduced-motion:reduce){ #s24 .s24-minimap .spin{animation:none} }
   </style>
   <script>
   DECK.register('s24', {
     _dt: null, _out: null, _going: false,
     _disarm: function(){ if(this._out){ this._out.kill(); this._out=null; } },
-    /* the hand-off: everything on the stage (this beat AND the chrome) fades to black, holds a beat, then the GHC outro rises out of it */
+    _v: function(s){ return {apex:s.querySelector('#s24-apex'), ghc:s.querySelector('#s24-ghc')}; },
+    _treat: function(s){ return DECK.$$('.s24-treat',s); },     /* the gameplay treatment: scrims + the LIVE tag — they go with the gameplay */
+    /* the hand-off: the gameplay dissolves into the reverse GHC animation; the panel, lower third, call-out, minimap and chrome stay */
     outro: function(s, G){
       if(this._going) return true; this._going=true; this._disarm();
-      var i=DECK.beats.indexOf(s), blk=s.querySelector('.s24-black');
-      G.to(blk,{opacity:1,duration:1.8,ease:'power2.inOut'});
-      G.to(DECK.$$('.chrome, .tick, .dtrack'),{opacity:0,duration:1.0,ease:'power2.inOut'});
-      G.delayedCall(2.3,function(){ DECK.$('#stage').classList.add('raw'); DECK.go(i+2); });
+      var v=this._v(s);
+      if(v.ghc.querySelector('source')){ try{ v.ghc.pause(); v.ghc.currentTime=0; var p=v.ghc.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){} }   /* no-video edition: the poster IS the splash */
+      G.to(v.ghc,{opacity:1,duration:1.8,ease:'power2.inOut'});
+      G.to(this._treat(s),{opacity:0,duration:1.4,ease:'power2.inOut'});
+      G.delayedCall(2.0,function(){ try{ v.apex.pause(); }catch(e){} });   /* covered now; stop decoding it */
       return true;
     },
     settle: function(s, G){
       if(this._dt){ this._dt.kill(); this._dt=null; }
-      this._disarm(); this._going=false; G.set(s.querySelector('.s24-black'),{opacity:0});
+      this._disarm(); this._going=false;
+      var v=this._v(s); try{ v.ghc.pause(); v.ghc.currentTime=0; }catch(e){}
+      G.set(v.ghc,{opacity:0}); G.set(this._treat(s),{opacity:1});
       G.set(s.querySelector('#s24-em'),{opacity:1});
     },
-    /* the timer starts once the beat is on screen (after runs both for a transition and a direct jump); 0 disables it */
-    after: function(s, G){ var self=this, at=+(s.dataset.outroAt||0); this._disarm(); if(at>0&&!this._going) this._out=G.delayedCall(at,function(){ self.outro(s,G); }); },
+    /* the timer starts once the beat is on screen (after runs for a transition and for a direct jump); 0 disables it */
+    after: function(s, G){
+      var self=this, at=+(s.dataset.outroAt||0), v=this._v(s);
+      if(!this._going&&v.apex.paused) DECK.playVideo(v.apex);          /* direct jump: enter() did not run */
+      this._disarm(); if(at>0&&!this._going) this._out=G.delayedCall(at,function(){ self.outro(s,G); });
+    },
     next: function(s, G){ return this.outro(s,G); },
     enter: function(s, G, tl){
-      var q=G.utils.selector(s), em=s.querySelector('#s24-em'), host=s.querySelector('#s24-host');
+      var q=G.utils.selector(s), em=s.querySelector('#s24-em'), host=s.querySelector('#s24-host'), v=this._v(s);
       if(this._dt){ this._dt.kill(); this._dt=null; }
+      tl.call(function(){ DECK.playVideo(v.apex); },null,.3);
       /* YOUR DOTS.: the Constellation assembles the second line in place (measured before the panel's entrance offset exists) */
       var dw=DECK.dotWord(em,{host:host,fly:1.4,link:1.4,color:'#ff4e33',linkColor:'#eceae6',seed:24}); this._dt=dw;   /* the closing tagline lands fast */
       tl.fromTo(q('.s24-live'),{opacity:0,x:-20},{opacity:1,x:0,duration:.5,ease:'power2.out'},.5)
@@ -2343,39 +2356,10 @@
         .fromTo(q('.s24-find'),{opacity:0,y:12,scale:.96},{opacity:1,y:0,scale:1,duration:.55,ease:'back.out(1.6)',transformOrigin:'0 50%'},L+.7)
         .fromTo(q('.s24-minimap'),{opacity:0,scale:.8},{opacity:1,scale:1,duration:.55,ease:'back.out(1.8)'},L+.8);
     },
-    leave: function(s, G){ this._disarm(); if(this._dt){ this._dt.kill(); this._dt=null; } }
-  });
-  </script>
-</section>
-
-<!-- beat 25 | ch 6 | in: fade | the outro: the GHC animation in reverse rises out of the black and lands on the official 2026 splash — hold here for Q&A -->
-<section class="beat" id="s25" data-in="fade" data-ch="6" data-name="OUTRO" data-chrome="off" data-raw="on" data-autoplay="off"
-         data-notes="The outro (Tristan's reverse cut of the GHC animation). After ~30 s of Season 30 gameplay on the Q&amp;A slide (or on the next press) the deck fades to black, then this clip rises out of the black, runs 10 s and lands on the official GHC 2026 splash. It holds there through Q&amp;A. Nothing more to press; LEFT goes back to the Q&amp;A slide.">
-  <video class="vid" id="s25-vid" muted playsinline preload="auto" poster="../media/outro-ghc-splash-poster.jpg" disablepictureinpicture>
-    <source src="../media/outro-ghc-splash.mp4" type="video/mp4">
-  </video>
-  <style>
-    #s25{background:#000}
-    #s25 .vid{object-fit:contain;background:#000}
-  </style>
-  <script>
-  DECK.register('s25', {
-    _endFn: null,
-    _unhook: function(v){ if(this._endFn){ v.removeEventListener('loadedmetadata',this._endFn); this._endFn=null; } },
-    /* settled (a direct jump here): sit on the landing frame — the splash */
-    settle: function(s, G){
-      var v=s.querySelector('#s25-vid'), self=this; this._unhook(v); try{ v.pause(); }catch(e){}
-      var end=function(){ self._endFn=null; try{ if(isFinite(v.duration)) v.currentTime=Math.max(0,v.duration-.04); }catch(e){} };
-      if(v.readyState>=1) end(); else { this._endFn=end; v.addEventListener('loadedmetadata',end,{once:true}); }
-    },
-    /* entrance (from the Q&A slide's fade to black): play from the top; the clip's first frames are near-black */
-    enter: function(s, G, tl){
-      var v=s.querySelector('#s25-vid'); this._unhook(v);
-      if(!v.querySelector('source')) return;                              /* no-video edition: the poster IS the splash */
-      try{ v.pause(); v.currentTime=0; }catch(e){}
-      tl.call(function(){ try{ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){} },null,.05);
-    },
-    leave: function(s, G){ var v=s.querySelector('#s25-vid'); this._unhook(v); try{ v.pause(); }catch(e){} }
+    leave: function(s, G){
+      this._disarm(); this._going=false; if(this._dt){ this._dt.kill(); this._dt=null; }
+      var v=this._v(s); DECK.pauseVideo(v.apex); try{ v.ghc.pause(); v.ghc.currentTime=0; }catch(e){}
+    }
   });
   </script>
 </section>
